@@ -1,0 +1,10843 @@
+/* =========================================================
+   NEXA HOME — ROYAL PREMIUM EDITION
+   Designed specifically for the supplied home.html
+========================================================= */
+
+:root {
+    --nexa-bg: #f4f1ea;
+    --nexa-bg-2: #ebe7de;
+    --nexa-surface: rgba(255, 255, 255, .78);
+    --nexa-surface-solid: #fffdf9;
+
+    --nexa-navy: #101a32;
+    --nexa-navy-2: #182443;
+    --nexa-blue: #315cff;
+    --nexa-violet: #7157d9;
+    --nexa-gold: #c59a45;
+
+    --nexa-text: #172039;
+    --nexa-muted: #7c8497;
+    --nexa-soft: #eef0f5;
+
+    --nexa-border: rgba(23, 32, 57, .09);
+    --nexa-border-strong: rgba(23, 32, 57, .15);
+
+    --nexa-shadow:
+        0 18px 50px rgba(25, 32, 55, .09);
+
+    --nexa-shadow-heavy:
+        0 25px 70px rgba(25, 32, 55, .15);
+
+    --nexa-radius: 22px;
+
+    --sidebar-width: 238px;
+    --content-max: 1320px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(111, 96, 255, 0.28),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(39, 174, 255, 0.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(146, 72, 220, 0.18),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #10132d 0%,
+            #17163a 42%,
+            #111b3b 72%,
+            #0c1229 100%
+        );
+
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   APP SHELL
+========================================================= */
+
+.nexa-app {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: var(--sidebar-width);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 16px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #111b34 0%,
+            #0d162c 100%
+        );
+
+    color: #fff;
+
+    border-right: 1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        18px 0 55px rgba(17, 27, 52, .12);
+}
+
+
+/* BRAND */
+
+.sidebar-brand {
+    padding: 4px 10px 30px;
+}
+
+.logo {
+    display: block;
+
+    color: #fff;
+
+    font-size: 29px;
+    line-height: 1;
+
+    font-weight: 900;
+    letter-spacing: -1.8px;
+
+    text-decoration: none;
+}
+
+.brand-status {
+    display: block;
+
+    margin-top: 8px;
+
+    color: rgba(255,255,255,.40);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+}
+
+
+/* NAV */
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.nav-item {
+    position: relative;
+
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 0 14px;
+
+    color: rgba(255,255,255,.62);
+
+    border: 1px solid transparent;
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    transition:
+        .2s ease;
+}
+
+.nav-item:hover {
+    color: #fff;
+
+    background: rgba(255,255,255,.065);
+
+    transform: translateX(2px);
+}
+
+.nav-item.active {
+    color: #fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(49,92,255,.22),
+            rgba(113,87,217,.16)
+        );
+
+    border-color:
+        rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,.025);
+}
+
+.nav-item.active::before {
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+    top: 11px;
+    bottom: 11px;
+
+    width: 3px;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #6e8cff,
+            #c39b52
+        );
+}
+
+.nav-icon {
+    width: 25px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 18px;
+
+    color: inherit;
+}
+
+.nav-label {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.nav-badge {
+    margin-left: auto;
+
+    min-width: 20px;
+    height: 20px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0 5px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.10);
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.nav-divider {
+    height: 1px;
+
+    margin: 12px 10px;
+
+    background: rgba(255,255,255,.08);
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-promo {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    margin-bottom: 10px;
+
+    border:
+        1px solid rgba(255,255,255,.07);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.045);
+}
+
+.promo-icon {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #315cff,
+            #7a61db
+        );
+
+    color: white;
+}
+
+.sidebar-promo strong,
+.sidebar-promo small {
+    display: block;
+}
+
+.sidebar-promo strong {
+    color: #fff;
+
+    font-size: 10px;
+}
+
+.sidebar-promo small {
+    margin-top: 3px;
+
+    color: rgba(255,255,255,.42);
+
+    font-size: 8px;
+}
+
+
+/* LOGOUT */
+
+.logout-btn {
+    width: 100%;
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color: rgba(255,255,255,.62);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255,255,255,.08);
+
+    color: #fff;
+}
+
+.logout-icon {
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 34px;
+
+    background:
+        rgba(248,247,243,.82);
+
+    border-bottom:
+        1px solid rgba(23,32,57,.07);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+}
+
+
+/* SEARCH */
+
+.topbar-search {
+    position: relative;
+
+    width: min(470px, 48%);
+}
+
+.search-icon {
+    position: absolute;
+
+    left: 16px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #7c8497;
+
+    font-size: 19px;
+
+    pointer-events: none;
+}
+
+.topbar-search input {
+    width: 100%;
+    height: 43px;
+
+    padding:
+        0 45px
+        0 44px;
+
+    border:
+        1px solid rgba(23,32,57,.09);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.72);
+
+    color: var(--nexa-text);
+
+    box-shadow:
+        0 6px 20px rgba(23,32,57,.04);
+
+    transition: .2s ease;
+}
+
+.topbar-search input::placeholder {
+    color: #9aa1af;
+}
+
+.topbar-search input:focus {
+    background: #fff;
+
+    border-color:
+        rgba(49,92,255,.28);
+
+    box-shadow:
+        0 0 0 4px rgba(49,92,255,.07);
+}
+
+.search-shortcut {
+    position: absolute;
+
+    right: 8px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 28px;
+    height: 27px;
+
+    border:
+        1px solid rgba(23,32,57,.08);
+
+    border-radius: 7px;
+
+    background: #f1f2f5;
+
+    color: #8991a1;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+/* TOP ACTIONS */
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.top-create-button {
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0 14px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background:
+        var(--nexa-navy);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(16,26,50,.13);
+
+    transition: .2s ease;
+}
+
+.top-create-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 28px rgba(16,26,50,.18);
+}
+
+.top-create-button span {
+    font-size: 18px;
+}
+
+.top-create-button strong {
+    font-size: 11px;
+}
+
+
+/* ICON BUTTONS */
+
+.topbar-btn {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(23,32,57,.08);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.70);
+
+    color: var(--nexa-navy);
+
+    font-size: 18px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.topbar-btn:hover {
+    background: #fff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(23,32,57,.08);
+}
+
+
+/* NOTIFICATION */
+
+.notification-trigger {
+    position: relative;
+}
+
+.notification-dot {
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #d49c42;
+
+    box-shadow:
+        0 0 0 3px #fff;
+}
+
+
+/* PROFILE */
+
+.mini-profile {
+    display: flex;
+
+    margin-left: 3px;
+
+    text-decoration: none;
+}
+
+.mini-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17233f,
+            #4c62b7
+        );
+
+    border:
+        2px solid #fff;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 850;
+
+    box-shadow:
+        0 6px 20px rgba(23,32,57,.15);
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.notification-area {
+    position: fixed;
+
+    top: 82px;
+    right: 25px;
+
+    width: min(350px, calc(100vw - 30px));
+
+    z-index: 5000;
+}
+
+.nexa-notification {
+    margin-bottom: 8px;
+
+    padding: 14px 16px;
+
+    border:
+        1px solid rgba(23,32,57,.10);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    color: var(--nexa-text);
+
+    box-shadow:
+        var(--nexa-shadow-heavy);
+
+    backdrop-filter: blur(20px);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.home-page {
+    width: min(
+        calc(100% - 56px),
+        var(--content-max)
+    );
+
+    margin: 0 auto;
+
+    padding:
+        28px
+        0
+        70px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.home-intro {
+    min-height: 142px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 17px;
+
+    padding: 27px 30px;
+
+    border:
+        1px solid rgba(23,32,57,.07);
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,.86),
+            rgba(250,248,242,.72)
+        );
+
+    box-shadow:
+        var(--nexa-shadow);
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.home-intro::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -90px;
+    top: -150px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(49,92,255,.12),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.home-eyebrow,
+.section-eyebrow {
+    display: block;
+
+    color: #9a7b40;
+
+    font-size: 8px;
+    font-weight: 850;
+
+    letter-spacing: 1.8px;
+}
+
+.home-intro h1 {
+    margin: 7px 0 6px;
+
+    color: var(--nexa-navy);
+
+    font-size: clamp(27px, 3vw, 38px);
+    line-height: 1.08;
+
+    letter-spacing: -1.4px;
+}
+
+.home-intro h1 span {
+    color: var(--nexa-blue);
+}
+
+.home-intro p {
+    max-width: 550px;
+
+    margin: 0;
+
+    color: var(--nexa-muted);
+
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.home-intro-actions {
+    display: flex;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+.intro-action {
+    min-height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border-radius: 11px;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.intro-action.primary {
+    border: 0;
+
+    background: var(--nexa-navy);
+
+    color: #fff;
+}
+
+.intro-action.secondary {
+    border:
+        1px solid rgba(23,32,57,.10);
+
+    background: #fff;
+
+    color: var(--nexa-navy);
+}
+
+
+/* =========================================================
+   QUICK STATS
+========================================================= */
+
+.quick-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.quick-stat {
+    min-height: 63px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 12px 15px;
+
+    border:
+        1px solid rgba(23,32,57,.07);
+
+    border-radius: 17px;
+
+    background:
+        rgba(255,255,255,.68);
+
+    box-shadow:
+        0 8px 28px rgba(23,32,57,.045);
+}
+
+.quick-stat-icon {
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    background:
+        #edf0ff;
+
+    color: var(--nexa-blue);
+
+    font-size: 15px;
+}
+
+.quick-stat strong,
+.quick-stat small {
+    display: block;
+}
+
+.quick-stat strong {
+    color: var(--nexa-navy);
+
+    font-size: 11px;
+}
+
+.quick-stat small {
+    margin-top: 3px;
+
+    color: var(--nexa-muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   IMPORTANT:
+   RIGHT COLUMN DOES NOT STRETCH TO FEED HEIGHT
+========================================================= */
+
+.home-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        285px;
+
+    align-items: start;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FEED
+========================================================= */
+
+.feed-column {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   STORIES
+========================================================= */
+
+.stories-section,
+.create-post,
+.feed-post,
+.empty-feed,
+.home-side-card,
+.nexa-side-banner {
+    border:
+        1px solid rgba(23,32,57,.08);
+
+    background:
+        rgba(255,255,255,.78);
+
+    box-shadow:
+        var(--nexa-shadow);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.stories-section {
+    padding: 19px 20px;
+
+    border-radius: var(--nexa-radius);
+
+    margin-bottom: 14px;
+}
+
+.stories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.section-title-group h2 {
+    margin: 4px 0 0;
+
+    color: var(--nexa-navy);
+
+    font-size: 17px;
+
+    letter-spacing: -.3px;
+}
+
+.section-link {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--nexa-blue);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.section-link span {
+    margin-left: 3px;
+}
+
+
+/* STORIES SCROLLER */
+
+.stories-container {
+    display: flex;
+
+    gap: 16px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.stories-container::-webkit-scrollbar {
+    display: none;
+}
+
+.story {
+    width: 62px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.story > span {
+    width: 100%;
+
+    overflow: hidden;
+
+    color: var(--nexa-muted);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    text-align: center;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.story-avatar-wrapper,
+.story-ring {
+    position: relative;
+
+    width: 58px;
+    height: 58px;
+
+    padding: 2px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #315cff,
+            #8c67db,
+            #d4a54f,
+            #315cff
+        );
+}
+
+.story-avatar {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        3px solid #fff;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17233f,
+            #5570d0
+        );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 850;
+}
+
+.add-story {
+    position: absolute;
+
+    right: -3px;
+    bottom: -2px;
+
+    width: 20px;
+    height: 20px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        2px solid #fff;
+
+    border-radius: 50%;
+
+    background:
+        var(--nexa-blue);
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CREATE POST
+========================================================= */
+
+.create-post {
+    padding: 18px 20px;
+
+    border-radius: var(--nexa-radius);
+
+    margin-bottom: 17px;
+}
+
+.composer-header {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 13px;
+}
+
+.post-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17233f,
+            #5d6ed0
+        );
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 850;
+}
+
+.composer-heading strong,
+.composer-heading span {
+    display: block;
+}
+
+.composer-heading strong {
+    color: var(--nexa-navy);
+
+    font-size: 11px;
+}
+
+.composer-heading span {
+    margin-top: 2px;
+
+    color: var(--nexa-muted);
+
+    font-size: 8px;
+}
+
+.create-post-top {
+    width: 100%;
+}
+
+#postInput {
+    width: 100%;
+    height: 43px;
+
+    padding: 0 15px;
+
+    border:
+        1px solid rgba(23,32,57,.09);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background:
+        #f7f7f5;
+
+    color: var(--nexa-text);
+
+    font-size: 11px;
+
+    transition: .2s ease;
+}
+
+#postInput:focus {
+    background: #fff;
+
+    border-color:
+        rgba(49,92,255,.25);
+
+    box-shadow:
+        0 0 0 4px rgba(49,92,255,.05);
+}
+
+#postInput::placeholder {
+    color: #9ba2b0;
+}
+
+
+/* MEDIA INDICATOR */
+
+.composer-media-indicator {
+    margin-top: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 7px 10px;
+
+    border-radius: 9px;
+
+    background: #eef2ff;
+
+    color: var(--nexa-blue);
+
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.composer-media-indicator button {
+    border: 0;
+
+    background: transparent;
+
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+/* COMPOSER ACTIONS */
+
+.create-post-actions {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr auto;
+
+    gap: 7px;
+
+    margin-top: 11px;
+}
+
+.composer-action,
+.composer-post-button {
+    min-height: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border-radius: 10px;
+
+    font-size: 9px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.composer-action {
+    border:
+        1px solid rgba(23,32,57,.07);
+
+    background:
+        #f7f7f5;
+
+    color: #697286;
+}
+
+.composer-action:hover {
+    background: #fff;
+
+    color: var(--nexa-navy);
+
+    transform: translateY(-1px);
+}
+
+.composer-action-icon {
+    font-size: 13px;
+}
+
+.composer-post-button {
+    min-width: 65px;
+
+    border: 0;
+
+    padding: 0 13px;
+
+    background:
+        var(--nexa-navy);
+
+    color: #fff;
+
+    box-shadow:
+        0 7px 17px rgba(16,26,50,.13);
+}
+
+.composer-post-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 24px rgba(16,26,50,.18);
+}
+
+
+/* =========================================================
+   FEED TOOLBAR
+========================================================= */
+
+.feed-toolbar {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    margin:
+        0 3px
+        12px;
+}
+
+.feed-toolbar h2 {
+    margin: 4px 0 0;
+
+    color: var(--nexa-navy);
+
+    font-size: 18px;
+    letter-spacing: -.4px;
+}
+
+.feed-filter {
+    display: flex;
+
+    padding: 3px;
+
+    border:
+        1px solid rgba(23,32,57,.07);
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,.6);
+}
+
+.feed-filter button {
+    border: 0;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #8b92a1;
+
+    font-size: 8px;
+    font-weight: 750;
+
+    cursor: pointer;
+}
+
+.feed-filter .feed-filter-active {
+    background: #fff;
+
+    color: var(--nexa-navy);
+
+    box-shadow:
+        0 2px 7px rgba(23,32,57,.08);
+}
+
+
+/* =========================================================
+   POSTS
+========================================================= */
+
+.feed-posts {
+    min-width: 0;
+}
+
+.feed-post {
+    margin-bottom: 14px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.post-header,
+.reel-header {
+    padding: 14px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-author {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+.post-user-avatar {
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4b5fb0,
+            #8063c9
+        );
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 850;
+}
+
+.post-author h3 {
+    margin: 0 0 2px;
+
+    color: var(--nexa-navy);
+
+    font-size: 11px;
+}
+
+.post-author span {
+    color: #969dac;
+
+    font-size: 8px;
+}
+
+.post-menu {
+    width: 31px;
+    height: 31px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #8c94a2;
+
+    cursor: pointer;
+}
+
+.post-menu:hover {
+    background: #f1f2f4;
+
+    color: var(--nexa-navy);
+}
+
+.post-content {
+    padding:
+        0 16px
+        13px;
+}
+
+.post-content p {
+    margin: 0;
+
+    color: #4d566b;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   POST MEDIA
+========================================================= */
+
+.post-media {
+    width: 100%;
+
+    background: #111827;
+
+    overflow: hidden;
+}
+
+.post-media img {
+    width: 100%;
+
+    max-height: 520px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   REELS IN FEED
+   SHORT-FORM / TIKTOK / YOUTUBE-SHORTS STYLE
+========================================================= */
+
+.reel-card {
+    width: min(100%, 520px);
+
+    margin:
+        0 auto
+        14px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: #111827;
+
+    border:
+        1px solid rgba(23,32,57,.08);
+
+    box-shadow:
+        var(--nexa-shadow-heavy);
+}
+
+.reel-card .reel-header {
+    background: #fff;
+}
+
+.reel-video {
+    position: relative;
+
+    width: 100%;
+
+    height: 560px;
+
+    max-height: 72vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        #05070c;
+}
+
+.reel-player {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    background: #05070c;
+}
+
+.reel-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 22px 72px 22px 18px;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            transparent 48%,
+            rgba(0,0,0,.72)
+        );
+}
+
+.reel-caption {
+    max-width: 78%;
+
+    color: #fff;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.6);
+}
+
+.reel-caption h3 {
+    margin: 0 0 5px;
+
+    font-size: 13px;
+}
+
+.reel-caption p {
+    margin: 0;
+
+    color: rgba(255,255,255,.82);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+
+.reel-action {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(255,255,255,.16);
+
+    border-radius: 50%;
+
+    background:
+        rgba(10,14,23,.55);
+
+    color: #fff;
+
+    backdrop-filter: blur(10px);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.reel-action:hover {
+    transform: scale(1.06);
+
+    background:
+        rgba(255,255,255,.14);
+}
+
+.reel-action-icon {
+    font-size: 17px;
+
+    line-height: 1;
+}
+
+.reel-action > span:last-child {
+    font-size: 7px;
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+   THIS IS THE IMPORTANT FIX
+========================================================= */
+
+.home-right-column {
+    width: 285px;
+
+    min-width: 0;
+
+    align-self: start;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    position: sticky;
+
+    top: 91px;
+
+    max-height:
+        calc(100vh - 108px);
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+}
+
+.home-right-column::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   RIGHT CARDS
+========================================================= */
+
+.home-side-card {
+    padding: 17px;
+
+    border-radius: 19px;
+
+    flex: 0 0 auto;
+}
+
+.side-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 13px;
+}
+
+.side-card-header h3 {
+    margin: 4px 0 0;
+
+    color: var(--nexa-navy);
+
+    font-size: 13px;
+}
+
+.side-card-more {
+    color: #9ba2ae;
+
+    font-size: 12px;
+}
+
+
+/* TRENDING */
+
+.trend-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.trend-item {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 5px;
+
+    border-radius: 10px;
+
+    transition: .18s ease;
+}
+
+.trend-item:hover {
+    background: #f5f5f3;
+}
+
+.trend-number {
+    color: #b5a06d;
+
+    font-size: 9px;
+    font-weight: 850;
+}
+
+.trend-item strong,
+.trend-item small {
+    display: block;
+}
+
+.trend-item strong {
+    color: var(--nexa-navy);
+
+    font-size: 10px;
+}
+
+.trend-item small {
+    margin-top: 2px;
+
+    color: var(--nexa-muted);
+
+    font-size: 8px;
+}
+
+.side-card-link {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    padding-top: 11px;
+
+    border-top:
+        1px solid rgba(23,32,57,.07);
+
+    color: var(--nexa-blue);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+
+/* CONNECTIONS */
+
+.connection-placeholder {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px;
+
+    border-radius: 13px;
+
+    background:
+        #f6f6f3;
+}
+
+.connection-avatar {
+    width: 37px;
+    height: 37px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17233f,
+            #6475cf
+        );
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 850;
+}
+
+.connection-placeholder strong,
+.connection-placeholder small {
+    display: block;
+}
+
+.connection-placeholder strong {
+    color: var(--nexa-navy);
+
+    font-size: 9px;
+}
+
+.connection-placeholder small {
+    margin-top: 3px;
+
+    color: var(--nexa-muted);
+
+    font-size: 8px;
+
+    line-height: 1.4;
+}
+
+.discover-button {
+    width: 100%;
+
+    min-height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    border-radius: 10px;
+
+    background:
+        var(--nexa-navy);
+
+    color: #fff;
+
+    font-size: 9px;
+    font-weight: 750;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   NEXA BANNER
+========================================================= */
+
+.nexa-side-banner {
+    position: relative;
+
+    min-height: 190px;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101a32,
+            #1d2a4c
+        );
+
+    color: #fff;
+
+    box-shadow:
+        0 20px 45px rgba(16,26,50,.17);
+}
+
+.banner-glow {
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(197,154,69,.25),
+            transparent 68%
+        );
+}
+
+.banner-logo {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 20px;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #d9b86e
+        );
+
+    color: #16213a;
+
+    font-weight: 900;
+}
+
+.nexa-side-banner .section-eyebrow {
+    color: #d3b474;
+}
+
+.nexa-side-banner h3 {
+    position: relative;
+
+    max-width: 190px;
+
+    margin: 7px 0 8px;
+
+    color: #fff;
+
+    font-size: 18px;
+    line-height: 1.16;
+
+    letter-spacing: -.5px;
+}
+
+.nexa-side-banner h3 span {
+    color: #d6b66c;
+}
+
+.nexa-side-banner p {
+    position: relative;
+
+    margin: 0;
+
+    color: rgba(255,255,255,.53);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   EMPTY FEED
+========================================================= */
+
+.empty-feed {
+    padding: 55px 20px;
+
+    text-align: center;
+
+    border-radius: 20px;
+}
+
+.empty-feed-icon {
+    width: 55px;
+    height: 55px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 0 auto 13px;
+
+    border-radius: 17px;
+
+    background: #edf0ff;
+
+    color: var(--nexa-blue);
+
+    font-size: 24px;
+}
+
+.empty-feed h2 {
+    margin: 0;
+
+    color: var(--nexa-navy);
+
+    font-size: 18px;
+}
+
+.empty-feed p {
+    max-width: 330px;
+
+    margin: 7px auto 15px;
+
+    color: var(--nexa-muted);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+.empty-feed-button {
+    min-height: 37px;
+
+    padding: 0 15px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: var(--nexa-navy);
+
+    color: #fff;
+
+    font-size: 9px;
+    font-weight: 750;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.comments-modal,
+.media-preview-modal,
+.story-viewer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    background:
+        rgba(12,17,30,.55);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.comments-modal[hidden],
+.media-preview-modal[hidden],
+.story-viewer[hidden],
+.reel-viewer[hidden] {
+    display: none;
+}
+
+.comments-modal-box,
+.media-preview-box {
+    width: min(520px, 100%);
+
+    max-height: 88vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(23,32,57,.10);
+
+    border-radius: 21px;
+
+    background:
+        #000000;
+
+    box-shadow:
+        0 30px 90px rgba(16,26,50,.22);
+}
+
+.comments-modal-header,
+.media-preview-header {
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    border-bottom:
+        1px solid rgba(23,32,57,.07);
+}
+
+.comments-modal-header h2,
+.media-preview-header h2 {
+    margin: 3px 0 0;
+
+    color: var(--nexa-navy);
+
+    font-size: 16px;
+}
+
+.comments-modal-header button,
+.media-preview-header button {
+    width: 34px;
+    height: 34px;
+
+    border:
+        1px solid rgba(23,32,57,.08);
+
+    border-radius: 50%;
+
+    background: #000000;
+
+    color: #626b7c;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* COMMENTS */
+
+.comments-list {
+    min-height: 150px;
+    max-height: 420px;
+
+    overflow-y: auto;
+
+    padding: 10px 18px;
+}
+
+.comment-item {
+    padding: 12px 0;
+
+    border-bottom:
+        1px solid rgba(23,32,57,.07);
+}
+
+.comment-item strong {
+    color: var(--nexa-navy);
+
+    font-size: 11px;
+}
+
+.comment-item p {
+    margin: 4px 0 0;
+
+    color: #697286;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.comment-form {
+    display: flex;
+
+    gap: 7px;
+
+    padding: 12px 15px;
+
+    border-top:
+        1px solid rgba(23,32,57,.07);
+}
+
+.comment-form input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 39px;
+
+    padding: 0 12px;
+
+    border:
+        1px solid rgba(23,32,57,.08);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #000000;
+
+    color: var(--nexa-text);
+}
+
+.comment-form button,
+.publish-media-button {
+    min-height: 39px;
+
+    padding: 0 14px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: var(--nexa-navy);
+
+    color: #fff;
+
+    font-size: 9px;
+    font-weight: 750;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MEDIA PREVIEW
+========================================================= */
+
+.media-preview-content {
+    min-height: 230px;
+
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    overflow: auto;
+
+    background:
+        #f3f1eb;
+}
+
+.media-preview-content img,
+.media-preview-content video {
+    max-width: 100%;
+    max-height: 58vh;
+
+    border-radius: 14px;
+}
+
+.publish-media-button {
+    margin: 13px;
+}
+
+
+/* =========================================================
+   STORY VIEWER
+========================================================= */
+
+.story-viewer {
+    background:
+        rgba(5,8,15,.92);
+}
+
+.story-viewer-content {
+    width: min(430px, 94vw);
+    height: min(760px, 90vh);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #000;
+}
+
+.story-viewer-content img,
+.story-viewer-content video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.story-viewer-close {
+    position: fixed;
+
+    top: 18px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.10);
+
+    color: #fff;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    z-index: 5001;
+}
+
+/* =========================================================
+   NEXA FULLSCREEN REEL VIEWER
+   TikTok / Reels style
+========================================================= */
+
+.reel-viewer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 999999;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease;
+}
+
+.reel-viewer.active {
+    display: flex;
+
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* DARK EVERYTHING BEHIND THE REEL */
+
+.reel-viewer-backdrop {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        rgba(0,0,0,.92);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+
+/* FOCUSED REEL AREA */
+
+.reel-viewer-content {
+    position: relative;
+
+    z-index: 10;
+
+    width: min(430px, 92vw);
+    height: min(780px, 92vh);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* VIDEO / IMAGE */
+
+.reel-viewer-video-wrap {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #000;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 35px 120px rgba(0,0,0,.9),
+        0 0 50px rgba(212,175,55,.05);
+}
+
+
+.reel-viewer-video {
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    object-fit: contain;
+
+    background: #000;
+}
+
+
+.reel-viewer-image {
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    object-fit: contain;
+
+    background: #000;
+}
+
+
+/* DARK GRADIENT OVER VIDEO */
+
+.reel-viewer-gradient {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.25),
+            transparent 28%,
+            transparent 55%,
+            rgba(0,0,0,.80)
+        );
+}
+
+
+/* CLOSE */
+
+.reel-viewer-close {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    z-index: 100;
+
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    border-radius: 50%;
+
+    background:
+        rgba(15,15,15,.75);
+
+    color: #fff;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        .2s ease;
+}
+
+.reel-viewer-close:hover {
+    color: #d4af37;
+
+    border-color:
+        rgba(212,175,55,.35);
+
+    background:
+        rgba(212,175,55,.10);
+
+    transform: scale(1.06);
+}
+
+
+/* INFORMATION ON VIDEO */
+
+.reel-viewer-info {
+    position: absolute;
+
+    left: 22px;
+    right: 80px;
+    bottom: 22px;
+
+    z-index: 20;
+
+    color: #fff;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.9);
+}
+
+
+.reel-viewer-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 9px;
+}
+
+
+.reel-viewer-avatar {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(255,255,255,.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b691c,
+            #d4af37
+        );
+
+    color: #080706;
+
+    font-weight: 900;
+}
+
+
+.reel-viewer-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.reel-viewer-user strong {
+    display: block;
+
+    color: #fff;
+
+    font-size: 14px;
+}
+
+
+.reel-viewer-user span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: rgba(255,255,255,.62);
+
+    font-size: 11px;
+}
+
+
+#reelViewerCaption {
+    margin: 0;
+
+    max-width: 330px;
+
+    color: #fff;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ACTIONS */
+
+.reel-viewer-actions {
+    position: absolute;
+
+    right: -70px;
+    bottom: 45px;
+
+    z-index: 30;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.reel-viewer-action {
+    width: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    cursor: pointer;
+}
+
+
+.reel-viewer-action-icon {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    border-radius: 50%;
+
+    background:
+        rgba(15,15,15,.72);
+
+    color: #fff;
+
+    font-size: 21px;
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        .2s ease;
+}
+
+
+.reel-viewer-action:hover
+.reel-viewer-action-icon {
+    transform: scale(1.08);
+
+    border-color:
+        rgba(212,175,55,.35);
+
+    color: #d4af37;
+
+    background:
+        rgba(212,175,55,.10);
+}
+
+
+.reel-viewer-action.active
+.reel-viewer-action-icon {
+    color:
+        #ff4966;
+
+    border-color:
+        rgba(255,73,102,.25);
+
+    background:
+        rgba(255,73,102,.10);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .reel-viewer-content {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .reel-viewer-video-wrap {
+        width: min(430px, 100vw);
+        height: 100vh;
+
+        border-radius: 0;
+        border: 0;
+    }
+
+    .reel-viewer-actions {
+        right: 12px;
+        bottom: 95px;
+    }
+
+    .reel-viewer-info {
+        left: 15px;
+        right: 75px;
+        bottom: 20px;
+    }
+
+    .reel-viewer-close {
+        top: 14px;
+        right: 14px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.mobile-nav {
+    display: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1120px) {
+
+    :root {
+        --sidebar-width: 82px;
+    }
+
+    .sidebar {
+        width: 82px;
+
+        align-items: center;
+
+        padding:
+            25px 9px
+            17px;
+    }
+
+    .sidebar-brand {
+        padding:
+            4px 0 28px;
+
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .brand-status {
+        display: none;
+    }
+
+    .nav-item {
+        width: 55px;
+
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .nav-label,
+    .nav-badge,
+    .sidebar-promo {
+        display: none;
+    }
+
+    .nav-divider {
+        width: 42px;
+    }
+
+    .logout-btn {
+        width: 52px;
+
+        font-size: 0;
+    }
+
+    .logout-icon {
+        font-size: 18px;
+    }
+
+    .main-content {
+        margin-left: 82px;
+    }
+
+    .home-page {
+        width:
+            min(
+                calc(100% - 38px),
+                1100px
+            );
+    }
+
+    .home-layout {
+        grid-template-columns:
+            minmax(0, 1fr)
+            255px;
+    }
+
+    .home-right-column {
+        width: 255px;
+    }
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .home-intro {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .home-intro-actions {
+        width: 100%;
+    }
+
+    .intro-action {
+        flex: 1;
+    }
+
+    .home-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .home-right-column {
+        position: static;
+
+        width: 100%;
+
+        max-height: none;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        align-items: start;
+    }
+
+    .nexa-side-banner {
+        min-height: 100%;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        padding-bottom: 66px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .topbar {
+        height: 62px;
+
+        padding:
+            0 11px;
+    }
+
+    .mobile-logo {
+        display: block;
+
+        color: var(--nexa-navy);
+
+        font-size: 21px;
+        font-weight: 900;
+
+        text-decoration: none;
+    }
+
+    .topbar-search {
+        width: 42%;
+    }
+
+    .topbar-search input {
+        height: 37px;
+
+        padding-left: 35px;
+        padding-right: 32px;
+
+        font-size: 10px;
+    }
+
+    .search-icon {
+        left: 11px;
+
+        font-size: 16px;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+
+    .top-create-button {
+        display: none;
+    }
+
+    .topbar-actions {
+        gap: 3px;
+    }
+
+    .topbar-btn {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+    }
+
+    .mini-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .home-page {
+        width: 100%;
+
+        padding:
+            12px
+            0
+            25px;
+    }
+
+    .home-intro {
+        margin:
+            0 10px
+            12px;
+
+        padding: 21px;
+
+        border-radius: 20px;
+    }
+
+    .home-intro h1 {
+        font-size: 27px;
+    }
+
+    .home-intro p {
+        font-size: 10px;
+    }
+
+    .home-intro-actions {
+        flex-direction: row;
+    }
+
+    .quick-stats {
+        margin:
+            0 10px
+            12px;
+
+        gap: 7px;
+    }
+
+    .quick-stat {
+        min-height: 57px;
+
+        padding: 9px;
+
+        border-radius: 13px;
+    }
+
+    .quick-stat-icon {
+        width: 29px;
+        height: 29px;
+    }
+
+    .quick-stat strong {
+        font-size: 9px;
+    }
+
+    .quick-stat small {
+        display: none;
+    }
+
+    .home-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .feed-column {
+        width: 100%;
+    }
+
+    .stories-section,
+    .create-post {
+        border-radius: 0;
+
+        border-left: 0;
+        border-right: 0;
+    }
+
+    .stories-section {
+        padding:
+            17px 14px;
+    }
+
+    .create-post {
+        padding:
+            17px 14px;
+    }
+
+    .create-post-actions {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .feed-toolbar {
+        padding: 0 12px;
+    }
+
+    .home-right-column {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 0 10px;
+
+        gap: 10px;
+    }
+
+    .home-side-card,
+    .nexa-side-banner {
+        width: 100%;
+    }
+
+    /* SHORT REELS */
+
+    .reel-card {
+        width: min(100%, 390px);
+
+        margin:
+            0 auto
+            13px;
+
+        border-radius: 17px;
+    }
+
+    .reel-video {
+        height: min(570px, 78vh);
+    }
+
+    .reel-action {
+        width: 41px;
+        height: 41px;
+    }
+
+    .mobile-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 3000;
+
+        height: 66px;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        background:
+            rgba(255,255,255,.93);
+
+        border-top:
+            1px solid rgba(23,32,57,.08);
+
+        box-shadow:
+            0 -10px 35px rgba(23,32,57,.10);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .mobile-nav-item {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 3px;
+
+        color: #8b92a1;
+
+        text-decoration: none;
+    }
+
+    .mobile-nav-item span {
+        font-size: 19px;
+    }
+
+    .mobile-nav-item small {
+        font-size: 8px;
+        font-weight: 750;
+    }
+
+    .mobile-nav-item.active {
+        color: var(--nexa-blue);
+    }
+
+    .mobile-nav-item.active::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        width: 25px;
+        height: 2px;
+
+        border-radius: 5px;
+
+        background:
+            var(--nexa-blue);
+    }
+
+    .notification-area {
+        top: 70px;
+        right: 10px;
+
+        width:
+            calc(100vw - 20px);
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .home-intro h1 {
+        font-size: 24px;
+    }
+
+    .home-intro-actions {
+        gap: 6px;
+    }
+
+    .intro-action {
+        padding: 0 9px;
+
+        font-size: 9px;
+    }
+
+    .quick-stats {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .quick-stat {
+        justify-content: center;
+    }
+
+    .quick-stat-icon {
+        display: none;
+    }
+
+    .feed-filter {
+        display: none;
+    }
+
+    .reel-card {
+        width: 100%;
+
+        border-radius: 14px;
+    }
+
+    .reel-video {
+        height: 510px;
+    }
+
+    .reel-overlay {
+        padding-right: 62px;
+    }
+
+    .reel-actions {
+        right: 8px;
+    }
+
+    .comments-modal,
+    .media-preview-modal {
+        padding: 8px;
+    }
+
+    .comments-modal-box,
+    .media-preview-box {
+        border-radius: 17px;
+    }
+
+    .reel-viewer-video-wrap {
+        width: 94vw;
+        height: 84vh;
+
+        border-radius: 14px;
+    }
+
+    .reel-viewer-content {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .reel-viewer-actions {
+        position: absolute;
+
+        right: 8px;
+        bottom: 80px;
+    }
+
+    .reel-viewer-info {
+        left: 12px;
+        bottom: 15px;
+
+        width:
+            calc(100% - 70px);
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}/* =========================================================
+   NEXA HOME
+   Compact premium social interface
+   ========================================================= */
+
+:root {
+    --home-sidebar: 214px;
+    --home-content: 1120px;
+    --home-feed: 560px;
+    --home-right: 270px;
+
+    --bg: #f3f5f9;
+    --bg-soft: #eef1f6;
+    --surface: rgba(255,255,255,.82);
+    --surface-solid: #ffffff;
+    --surface-soft: #f7f8fb;
+
+    --text: #182033;
+    --muted: #7d879b;
+    --faint: #a9b1c0;
+
+    --line: #e5e9f0;
+    --line-strong: #d9deea;
+
+    --royal: #5964e9;
+    --royal-dark: #414cc9;
+    --cyan: #33b8e8;
+    --pink: #df6bb6;
+
+    --danger: #e34f67;
+    --success: #36aa83;
+
+    --radius: 18px;
+    --shadow:
+        0 12px 35px rgba(35, 44, 76, .08);
+
+    --shadow-lg:
+        0 24px 70px rgba(35, 44, 76, .12);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        Poppins,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(89,100,233,.10),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 100% 15%,
+            rgba(51,184,232,.08),
+            transparent 24%
+        ),
+        linear-gradient(
+            135deg,
+            #f7f9fc 0%,
+            #eef2f8 48%,
+            #f7f8fb 100%
+        );
+
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   APP SHELL
+   ========================================================= */
+
+.nexa-app {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: var(--home-sidebar);
+
+    padding: 22px 14px;
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+        rgba(255,255,255,.82);
+
+    border-right:
+        1px solid var(--line);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    z-index: 1000;
+}
+
+
+.sidebar-brand {
+    padding: 7px 11px 25px;
+}
+
+
+.logo {
+    display: block;
+
+    font-size: 27px;
+    font-weight: 900;
+
+    letter-spacing: -.06em;
+
+    background:
+        linear-gradient(
+            110deg,
+            var(--royal-dark),
+            var(--royal),
+            var(--cyan)
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.brand-status {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--faint);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: .2em;
+}
+
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-item {
+    position: relative;
+
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 12px;
+
+    border: 1px solid transparent;
+    border-radius: 12px;
+
+    color: #727d93;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.nav-item:hover {
+    color: var(--text);
+
+    background:
+        rgba(89,100,233,.05);
+
+    border-color:
+        var(--line);
+
+    transform: translateX(1px);
+}
+
+
+.nav-item.active {
+    color: var(--royal-dark);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(89,100,233,.10),
+            rgba(51,184,232,.07)
+        );
+
+    border-color:
+        rgba(89,100,233,.12);
+}
+
+
+.nav-item.active::before {
+    content: "";
+
+    position: absolute;
+
+    left: -14px;
+    top: 9px;
+    bottom: 9px;
+
+    width: 3px;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--royal),
+            var(--cyan)
+        );
+}
+
+
+.nav-icon {
+    width: 22px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 17px;
+
+    color: #9199aa;
+}
+
+
+.nav-item.active .nav-icon {
+    color: var(--royal);
+}
+
+
+.nav-badge {
+    margin-left: auto;
+
+    min-width: 20px;
+    height: 20px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0 5px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(89,100,233,.10);
+
+    color: var(--royal);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+.nav-divider {
+    height: 1px;
+
+    margin: 12px 5px;
+
+    background:
+        var(--line);
+}
+
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+
+.sidebar-promo {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    border:
+        1px solid rgba(89,100,233,.10);
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(89,100,233,.07),
+            rgba(51,184,232,.05)
+        );
+}
+
+
+.promo-icon {
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+
+    font-size: 13px;
+}
+
+
+.sidebar-promo strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+
+.sidebar-promo small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    line-height: 1.3;
+}
+
+
+.logout-btn {
+    width: 100%;
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border:
+        1px solid rgba(227,79,103,.12);
+
+    border-radius: 11px;
+
+    background:
+        rgba(227,79,103,.045);
+
+    color:
+        var(--danger);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.logout-btn:hover {
+    background:
+        rgba(227,79,103,.08);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-content {
+    min-height: 100vh;
+
+    margin-left: var(--home-sidebar);
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    position: sticky;
+    top: 0;
+
+    z-index: 900;
+
+    min-height: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding: 10px 24px;
+
+    background:
+        rgba(247,249,252,.82);
+
+    border-bottom:
+        1px solid var(--line);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+
+.mobile-logo {
+    display: none;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            110deg,
+            var(--royal-dark),
+            var(--cyan)
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.topbar-search {
+    position: relative;
+
+    width: min(410px, 46%);
+}
+
+
+.search-icon {
+    position: absolute;
+
+    left: 13px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color:
+        #969fb1;
+
+    font-size: 18px;
+
+    pointer-events: none;
+}
+
+
+.topbar-search input {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 40px;
+
+    outline: none;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    color:
+        var(--text);
+
+    font-size: 11px;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+
+.topbar-search input::placeholder {
+    color: #a1a9b8;
+}
+
+
+.topbar-search input:focus {
+    background: white;
+
+    border-color:
+        rgba(89,100,233,.25);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(89,100,233,.06);
+}
+
+
+.search-shortcut {
+    position: absolute;
+
+    right: 7px;
+    top: 50%;
+
+    width: 25px;
+    height: 25px;
+
+    transform:
+        translateY(-50%);
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 7px;
+
+    background:
+        var(--surface-soft);
+
+    color:
+        #929baa;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+.top-create-button {
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 0 13px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 7px 20px
+        rgba(89,100,233,.16);
+
+    font-size: 11px;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease;
+}
+
+
+.top-create-button:hover {
+    transform:
+        translateY(-1px);
+
+    filter:
+        brightness(1.04);
+}
+
+
+.top-create-button span {
+    font-size: 17px;
+    line-height: 1;
+}
+
+
+.topbar-btn {
+    position: relative;
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,.68);
+
+    color:
+        #737e93;
+
+    font-size: 17px;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.topbar-btn:hover {
+    color:
+        var(--royal-dark);
+
+    background:
+        white;
+
+    border-color:
+        var(--line-strong);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.notification-dot {
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        var(--danger);
+}
+
+
+.mini-profile {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.mini-avatar,
+.post-avatar,
+.story-avatar,
+.post-user-avatar,
+.connection-avatar,
+.reel-viewer-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+
+    font-weight: 800;
+}
+
+
+.mini-avatar {
+    width: 38px;
+    height: 38px;
+
+    border:
+        2px solid white;
+
+    box-shadow:
+        0 4px 15px
+        rgba(89,100,233,.18);
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
+.notification-area {
+    position: fixed;
+
+    top: 76px;
+    right: 18px;
+
+    z-index: 5000;
+
+    width: min(330px, calc(100vw - 30px));
+}
+
+
+.nexa-notification {
+    margin-bottom: 8px;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    color:
+        var(--text);
+
+    box-shadow:
+        var(--shadow);
+
+    font-size: 10px;
+
+    animation:
+        notificationIn .2s ease;
+}
+
+
+@keyframes notificationIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   HOME PAGE
+   ========================================================= */
+
+.home-page {
+    width: min(
+        var(--home-content),
+        calc(100% - 36px)
+    );
+
+    margin: 0 auto;
+
+    padding: 25px 0 55px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.home-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 18px;
+
+    padding: 22px 24px;
+
+    border:
+        1px solid rgba(89,100,233,.10);
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(89,100,233,.075),
+            rgba(255,255,255,.72) 42%,
+            rgba(51,184,232,.055)
+        );
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.home-eyebrow,
+.section-eyebrow {
+    display: block;
+
+    color:
+        var(--royal);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: .18em;
+}
+
+
+.home-intro h1 {
+    margin: 5px 0 5px;
+
+    max-width: 530px;
+
+    font-size:
+        clamp(25px, 3.6vw, 38px);
+
+    line-height: 1.08;
+
+    letter-spacing: -.04em;
+}
+
+
+.home-intro h1 span {
+    background:
+        linear-gradient(
+            110deg,
+            var(--royal-dark),
+            var(--cyan)
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.home-intro p {
+    max-width: 530px;
+
+    margin: 0;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+.home-intro-actions {
+    display: flex;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+}
+
+
+.intro-action {
+    min-height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+.intro-action.secondary {
+    border:
+        1px solid var(--line);
+
+    background:
+        rgba(255,255,255,.75);
+
+    color:
+        var(--text);
+}
+
+
+.intro-action.primary {
+    border: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+}
+
+
+/* =========================================================
+   QUICK STATS
+   ========================================================= */
+
+.quick-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+
+.quick-stat {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.68);
+
+    box-shadow:
+        0 8px 24px
+        rgba(35,44,76,.04);
+}
+
+
+.quick-stat-icon {
+    width: 31px;
+    height: 31px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(89,100,233,.08);
+
+    color:
+        var(--royal);
+
+    font-size: 12px;
+}
+
+
+.quick-stat strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+
+.quick-stat small {
+    display: block;
+
+    margin-top: 2px;
+
+    overflow: hidden;
+
+    color:
+        var(--muted);
+
+    font-size: 8px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.home-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, var(--home-feed))
+        minmax(220px, var(--home-right));
+
+    align-items: start;
+
+    gap: 18px;
+}
+
+
+.feed-column {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   STORIES
+   ========================================================= */
+
+.stories-section,
+.create-post,
+.home-side-card,
+.nexa-side-banner,
+.feed-post,
+.reel-card,
+.empty-feed {
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        var(--radius);
+
+    background:
+        rgba(255,255,255,.76);
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:
+        blur(16px);
+    -webkit-backdrop-filter:
+        blur(16px);
+}
+
+
+.stories-section {
+    padding: 16px;
+}
+
+
+.stories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+
+.section-title-group h2 {
+    margin: 3px 0 0;
+
+    font-size: 16px;
+
+    letter-spacing: -.02em;
+}
+
+
+.section-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 4px;
+
+    border: 0;
+
+    background: transparent;
+
+    color:
+        var(--royal);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+.stories-container {
+    display: flex;
+
+    gap: 13px;
+
+    overflow-x: auto;
+
+    padding-bottom: 1px;
+
+    scrollbar-width: none;
+}
+
+
+.stories-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+.story {
+    width: 62px;
+
+    flex:
+        0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.story > span {
+    width: 100%;
+
+    overflow: hidden;
+
+    color:
+        var(--muted);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    text-align: center;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.story-ring,
+.story-avatar-wrapper {
+    position: relative;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+}
+
+
+.story-ring {
+    padding: 3px;
+
+    background:
+        conic-gradient(
+            var(--royal),
+            var(--cyan),
+            var(--pink),
+            var(--royal)
+        );
+}
+
+
+.story-ring img,
+.story-ring video,
+.story-avatar {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border:
+        3px solid white;
+
+    border-radius: 50%;
+}
+
+
+.story-avatar {
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+}
+
+
+.add-story {
+    position: absolute;
+
+    right: -2px;
+    bottom: -2px;
+
+    width: 20px;
+    height: 20px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border:
+        2px solid white;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   CREATE POST
+   ========================================================= */
+
+.create-post {
+    margin-top: 13px;
+
+    padding: 15px;
+}
+
+
+.composer-header {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 11px;
+}
+
+
+.post-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+}
+
+
+.composer-heading strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+
+.composer-heading span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+.create-post-top {
+    display: flex;
+}
+
+
+#postInput {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 14px;
+
+    outline: none;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 11px;
+
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+
+    font-size: 10px;
+}
+
+
+#postInput::placeholder {
+    color: #9ea6b5;
+}
+
+
+#postInput:focus {
+    border-color:
+        rgba(89,100,233,.24);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(89,100,233,.05);
+}
+
+
+.composer-media-indicator {
+    margin-top: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 7px 9px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(89,100,233,.06);
+
+    color:
+        var(--royal);
+
+    font-size: 8px;
+}
+
+
+.composer-media-indicator button {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--danger);
+
+    font-size: 14px;
+}
+
+
+.create-post-actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 7px;
+
+    margin-top: 10px;
+}
+
+
+.composer-action,
+.composer-post-button {
+    min-height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 0 7px;
+
+    border-radius: 9px;
+
+    font-size: 9px;
+    font-weight: 750;
+}
+
+
+.composer-action {
+    border:
+        1px solid var(--line);
+
+    background:
+        var(--surface-soft);
+
+    color:
+        #747f93;
+}
+
+
+.composer-action:hover {
+    border-color:
+        var(--line-strong);
+
+    background:
+        white;
+
+    color:
+        var(--text);
+}
+
+
+.composer-post-button {
+    border: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+}
+
+
+.composer-action-icon {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FEED TOOLBAR
+   ========================================================= */
+
+.feed-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin:
+        18px
+        2px
+        10px;
+}
+
+
+.feed-toolbar h2 {
+    margin: 3px 0 0;
+
+    font-size: 17px;
+
+    letter-spacing: -.03em;
+}
+
+
+.feed-filter {
+    display: flex;
+
+    gap: 2px;
+
+    padding: 3px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.64);
+}
+
+
+.feed-filter button {
+    border: 0;
+
+    padding: 6px 8px;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color:
+        var(--muted);
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+.feed-filter .feed-filter-active {
+    background:
+        white;
+
+    color:
+        var(--royal);
+
+    box-shadow:
+        0 2px 7px rgba(35,44,76,.06);
+}
+
+
+/* =========================================================
+   FEED POSTS
+   ========================================================= */
+
+.feed-posts {
+    min-width: 0;
+}
+
+
+.feed-post,
+.reel-card {
+    margin-bottom: 13px;
+
+    overflow: hidden;
+}
+
+
+.post-header,
+.reel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 13px 14px;
+}
+
+
+.post-author {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.post-user-avatar {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border:
+        2px solid white;
+
+    font-size: 11px;
+}
+
+
+.post-author h3 {
+    margin: 0;
+
+    font-size: 10px;
+}
+
+
+.post-author span {
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        var(--muted);
+
+    font-size: 7px;
+}
+
+
+.post-menu {
+    width: 28px;
+    height: 28px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color:
+        #8992a2;
+
+    font-size: 16px;
+}
+
+
+.post-menu:hover {
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+}
+
+
+.post-content {
+    padding:
+        0 14px
+        12px;
+}
+
+
+.post-content p {
+    margin: 0;
+
+    color:
+        #495268;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+.post-media {
+    overflow: hidden;
+
+    background:
+        #edf0f5;
+}
+
+
+.post-media img,
+.post-media video {
+    display: block;
+
+    width: 100%;
+
+    max-height: 560px;
+
+    object-fit: cover;
+}
+
+
+.post-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 3px;
+
+    padding:
+        8px
+        9px
+        10px;
+}
+
+
+.post-action {
+    min-height: 31px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 0 8px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color:
+        #8791a3;
+
+    font-size: 14px;
+}
+
+
+.post-action:hover {
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--royal);
+}
+
+
+.post-action span {
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+.post-action.liked {
+    color:
+        var(--danger);
+}
+
+
+.post-action.saved {
+    color:
+        var(--royal);
+}
+
+
+/* =========================================================
+   REELS
+   Compact TikTok / Shorts-style card
+   ========================================================= */
+
+.reel-card {
+    background:
+        #101522;
+
+    border-color:
+        #252c3c;
+}
+
+
+.reel-header {
+    background:
+        #101522;
+
+    color: white;
+}
+
+
+.reel-header .post-author h3 {
+    color: white;
+}
+
+
+.reel-header .post-author span {
+    color:
+        #8993a8;
+}
+
+
+.reel-header .post-menu {
+    color:
+        #bbc3d1;
+}
+
+
+/* THE IMPORTANT FIX:
+   keep reels compact instead of letting them
+   consume the whole page. */
+
+.reel-video {
+    position: relative;
+
+    width: min(
+        100%,
+        390px
+    );
+
+    height:
+        520px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    background:
+        #05070c;
+}
+
+
+.reel-player {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    background:
+        #05070c;
+}
+
+
+.reel-overlay {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            transparent 42%,
+            rgba(0,0,0,.74) 100%
+        );
+}
+
+
+.reel-caption {
+    position: absolute;
+
+    left: 14px;
+    right: 70px;
+    bottom: 18px;
+
+    color: white;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.5);
+}
+
+
+.reel-caption h3 {
+    margin: 0 0 4px;
+
+    font-size: 13px;
+}
+
+
+.reel-caption p {
+    margin: 0;
+
+    color:
+        rgba(255,255,255,.76);
+
+    font-size: 8px;
+}
+
+
+.reel-actions {
+    position: absolute;
+
+    right: 10px;
+    bottom: 17px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    pointer-events: auto;
+}
+
+
+.reel-action {
+    width: 41px;
+    height: 41px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    border-radius: 50%;
+
+    background:
+        rgba(15,20,31,.62);
+
+    color:
+        white;
+
+    backdrop-filter:
+        blur(10px);
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    font-size: 15px;
+}
+
+
+.reel-action:hover {
+    background:
+        rgba(255,255,255,.12);
+}
+
+
+.reel-action > span:last-child {
+    margin-top: 1px;
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+.reel-action.liked {
+    color:
+        #ff6b83;
+}
+
+
+.reel-action.saved {
+    color:
+        white;
+}
+
+
+/* =========================================================
+   EMPTY FEED
+   ========================================================= */
+
+.empty-feed {
+    padding: 45px 18px;
+
+    text-align: center;
+}
+
+
+.empty-feed-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 12px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(89,100,233,.08);
+
+    color:
+        var(--royal);
+
+    font-size: 22px;
+}
+
+
+.empty-feed h2 {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+
+.empty-feed p {
+    margin: 7px auto 15px;
+
+    max-width: 300px;
+
+    color:
+        var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+.empty-feed-button {
+    min-height: 34px;
+
+    padding: 0 12px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color:
+        white;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RIGHT SIDEBAR
+   NO STRETCHING — this prevents the huge blank area.
+   ========================================================= */
+
+.home-right-column {
+    align-self: start;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+
+.home-side-card,
+.nexa-side-banner {
+    padding: 15px;
+}
+
+
+.side-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-bottom: 11px;
+}
+
+
+.side-card-header h3 {
+    margin: 3px 0 0;
+
+    font-size: 13px;
+
+    letter-spacing: -.02em;
+}
+
+
+.side-card-more {
+    color:
+        #a4adbc;
+
+    font-size: 11px;
+}
+
+
+.trend-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.trend-item {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px 0;
+
+    border-bottom:
+        1px solid var(--line);
+}
+
+
+.trend-item:last-child {
+    border-bottom: 0;
+}
+
+
+.trend-number {
+    color:
+        #aab2c1;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+.trend-item strong {
+    display: block;
+
+    font-size: 9px;
+}
+
+
+.trend-item small {
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        var(--muted);
+
+    font-size: 7px;
+}
+
+
+.side-card-link,
+.discover-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 11px;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    color:
+        var(--royal);
+}
+
+
+.connection-placeholder {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 10px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 11px;
+
+    background:
+        var(--surface-soft);
+}
+
+
+.connection-avatar {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    font-size: 10px;
+}
+
+
+.connection-placeholder strong {
+    display: block;
+
+    font-size: 9px;
+}
+
+
+.connection-placeholder small {
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.4;
+}
+
+
+.discover-button {
+    min-height: 33px;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(89,100,233,.10),
+            rgba(51,184,232,.08)
+        );
+
+    border:
+        1px solid rgba(89,100,233,.10);
+}
+
+
+/* =========================================================
+   NEXA BANNER
+   ========================================================= */
+
+.nexa-side-banner {
+    position: relative;
+
+    overflow: hidden;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3e48b8,
+            #5964e9 46%,
+            #2c9fc4
+        );
+
+    box-shadow:
+        0 18px 45px
+        rgba(65,76,201,.22);
+}
+
+
+.banner-glow {
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    right: -50px;
+    top: -50px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.14);
+
+    filter:
+        blur(8px);
+
+    pointer-events: none;
+}
+
+
+.banner-logo {
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 9px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,.16);
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+.nexa-side-banner .section-eyebrow {
+    color:
+        rgba(255,255,255,.68);
+}
+
+
+.nexa-side-banner h3 {
+    position: relative;
+
+    margin: 5px 0 6px;
+
+    max-width: 190px;
+
+    font-size: 17px;
+
+    line-height: 1.15;
+}
+
+
+.nexa-side-banner h3 span {
+    color:
+        #bdf4ff;
+}
+
+
+.nexa-side-banner p {
+    position: relative;
+
+    margin: 0;
+
+    color:
+        rgba(255,255,255,.75);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.comments-modal,
+.media-preview-modal,
+.story-viewer,
+.reel-viewer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+
+    background:
+        rgba(28,34,50,.38);
+
+    backdrop-filter:
+        blur(18px);
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+
+.comments-modal[hidden],
+.media-preview-modal[hidden],
+.story-viewer[hidden],
+.reel-viewer[hidden] {
+    display: none;
+}
+
+
+.comments-modal-box,
+.media-preview-box {
+    width:
+        min(480px, 100%);
+
+    max-height:
+        88vh;
+
+    overflow: hidden;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.comments-modal-header,
+.media-preview-header {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        0 15px;
+
+    border-bottom:
+        1px solid var(--line);
+}
+
+
+.comments-modal-header h2,
+.media-preview-header h2 {
+    margin: 3px 0 0;
+
+    font-size: 15px;
+}
+
+
+.comments-modal-header button,
+.media-preview-header button {
+    width: 31px;
+    height: 31px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 9px;
+
+    background:
+        var(--surface-soft);
+
+    color:
+        #737d90;
+
+    font-size: 19px;
+}
+
+
+.comments-list {
+    max-height: 400px;
+
+    overflow-y: auto;
+
+    padding:
+        12px 15px;
+}
+
+
+.comment-item {
+    padding:
+        10px 0;
+
+    border-bottom:
+        1px solid var(--line);
+}
+
+
+.comment-item strong {
+    font-size: 10px;
+}
+
+
+.comment-item p {
+    margin: 4px 0 0;
+
+    color:
+        var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+.comment-form {
+    display: flex;
+
+    gap: 7px;
+
+    padding:
+        11px 15px;
+
+    border-top:
+        1px solid var(--line);
+}
+
+
+.comment-form input {
+    min-width: 0;
+    flex: 1;
+
+    height: 35px;
+
+    padding: 0 11px;
+
+    outline: none;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 9px;
+
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+
+    font-size: 9px;
+}
+
+
+.comment-form button,
+.publish-media-button {
+    min-height: 35px;
+
+    padding: 0 12px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--royal),
+            var(--cyan)
+        );
+
+    color: white;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MEDIA PREVIEW
+   ========================================================= */
+
+.media-preview-content {
+    min-height: 220px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 15px;
+
+    background:
+        #f0f2f6;
+}
+
+
+.media-preview-content img,
+.media-preview-content video {
+    max-width: 100%;
+    max-height: 55vh;
+
+    border-radius: 12px;
+}
+
+
+.publish-media-button {
+    width: calc(100% - 30px);
+
+    margin:
+        0 15px 15px;
+}
+
+
+/* =========================================================
+   STORY VIEWER
+   ========================================================= */
+
+.story-viewer {
+    background:
+        rgba(20,24,34,.84);
+}
+
+
+.story-viewer-content {
+    width:
+        min(380px, 94vw);
+
+    height:
+        min(660px, 88vh);
+
+    overflow: hidden;
+
+    display: grid;
+    place-items: center;
+
+    border-radius:
+        18px;
+
+    background:
+        #11151e;
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.story-viewer-content img,
+.story-viewer-content video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.story-viewer-close,
+.reel-viewer-close {
+    position: fixed;
+
+    top: 16px;
+    right: 18px;
+
+    z-index: 20;
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    border-radius: 50%;
+
+    background:
+        rgba(20,25,35,.7);
+
+    color:
+        white;
+
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   REEL VIEWER
+   ========================================================= */
+
+.reel-viewer {
+    background:
+        rgba(17,21,30,.72);
+}
+
+
+.reel-viewer-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(71,81,145,.24),
+            rgba(11,14,22,.96) 68%
+        );
+
+    backdrop-filter:
+        blur(22px);
+}
+
+
+.reel-viewer-content {
+    position: relative;
+    z-index: 5;
+
+    width:
+        min(720px, 94vw);
+
+    height:
+        min(720px, 92vh);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.reel-viewer-video-wrap {
+    position: relative;
+
+    width:
+        min(390px, 88vw);
+
+    height:
+        min(680px, 88vh);
+
+    overflow: hidden;
+
+    border-radius:
+        18px;
+
+    background:
+        #05070c;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.42);
+}
+
+
+.reel-viewer-video,
+.reel-viewer-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    background:
+        #05070c;
+}
+
+
+.reel-viewer-image {
+    display: none;
+}
+
+
+.reel-viewer-progress {
+    position: absolute;
+
+    top: 9px;
+    left: 10px;
+    right: 10px;
+
+    z-index: 4;
+
+    height: 2px;
+
+    overflow: hidden;
+
+    border-radius: 99px;
+
+    background:
+        rgba(255,255,255,.16);
+}
+
+
+.reel-viewer-progress span {
+    display: block;
+
+    width: 22%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        white;
+}
+
+
+.reel-viewer-gradient {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            transparent 45%,
+            rgba(0,0,0,.72)
+        );
+}
+
+
+.reel-viewer-info {
+    position: absolute;
+
+    left:
+        calc(50% - 195px);
+
+    bottom:
+        calc(
+            50% - 320px
+        );
+
+    z-index: 8;
+
+    width:
+        300px;
+
+    color:
+        white;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.65);
+}
+
+
+.reel-viewer-user {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 7px;
+}
+
+
+.reel-viewer-avatar {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border:
+        2px solid rgba(255,255,255,.18);
+}
+
+
+.reel-viewer-user strong {
+    display: block;
+
+    font-size: 11px;
+}
+
+
+.reel-viewer-user span {
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size: 7px;
+}
+
+
+#reelViewerCaption {
+    margin: 0;
+
+    max-width: 280px;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+.reel-viewer-actions {
+    position: absolute;
+
+    left:
+        calc(
+            50% + 214px
+        );
+
+    bottom:
+        calc(
+            50% - 275px
+        );
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.reel-viewer-action {
+    width: 42px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+}
+
+
+.reel-viewer-action-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    border-radius: 50%;
+
+    background:
+        rgba(15,20,31,.65);
+
+    backdrop-filter:
+        blur(8px);
+
+    font-size: 17px;
+}
+
+
+.reel-viewer-action > span:last-child {
+    color:
+        rgba(255,255,255,.7);
+
+    font-size: 7px;
+    font-weight: 700;
+}
+
+
+.reel-viewer-action.active .reel-viewer-action-icon {
+    color:
+        #ff7187;
+
+    border-color:
+        rgba(255,113,135,.24);
+
+    background:
+        rgba(227,79,103,.12);
+}
+
+
+body.reel-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MOBILE NAV
+   ========================================================= */
+
+.mobile-nav {
+    display: none;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1080px) {
+
+    :root {
+        --home-sidebar: 190px;
+        --home-feed: 520px;
+        --home-right: 230px;
+    }
+
+    .topbar {
+        padding:
+            10px 18px;
+    }
+
+    .home-page {
+        width:
+            calc(100% - 28px);
+    }
+
+    .home-layout {
+        gap: 13px;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    :root {
+        --home-sidebar: 72px;
+    }
+
+    .sidebar {
+        width: 72px;
+
+        align-items: center;
+
+        padding:
+            18px 8px;
+    }
+
+    .sidebar-brand {
+        padding:
+            5px 0 22px;
+
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .brand-status,
+    .nav-label,
+    .nav-badge,
+    .sidebar-promo,
+    .logout-btn span:last-child {
+        display: none;
+    }
+
+    .main-nav {
+        align-items: center;
+    }
+
+    .nav-item {
+        width: 48px;
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .nav-item.active::before {
+        left: -8px;
+    }
+
+    .nav-divider {
+        width: 38px;
+    }
+
+    .logout-btn {
+        width: 46px;
+        padding: 0;
+    }
+
+    .main-content {
+        margin-left:
+            72px;
+    }
+
+    .home-layout {
+        grid-template-columns:
+            minmax(0,1fr);
+    }
+
+    .home-right-column {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        padding-bottom:
+            65px;
+    }
+
+    .sidebar {
+        display:
+            none;
+    }
+
+    .main-content {
+        margin-left:
+            0;
+    }
+
+    .topbar {
+        min-height:
+            60px;
+
+        padding:
+            8px 10px;
+    }
+
+    .mobile-logo {
+        display: block;
+
+        flex-shrink: 0;
+    }
+
+    .topbar-search {
+        width:
+            44%;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+
+    .top-create-button {
+        padding:
+            0 9px;
+    }
+
+    .top-create-button strong {
+        display: none;
+    }
+
+    .topbar-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .mini-avatar {
+        width: 34px;
+        height: 34px;
+    }
+
+    .home-page {
+        width:
+            calc(100% - 18px);
+
+        padding:
+            13px 0 35px;
+    }
+
+    .home-intro {
+        display: block;
+
+        padding:
+            16px;
+    }
+
+    .home-intro h1 {
+        font-size:
+            25px;
+    }
+
+    .home-intro p {
+        font-size:
+            9px;
+    }
+
+    .home-intro-actions {
+        margin-top:
+            12px;
+    }
+
+    .quick-stats {
+        grid-template-columns:
+            1fr;
+
+        gap: 7px;
+    }
+
+    .quick-stat {
+        padding:
+            10px 12px;
+    }
+
+    .quick-stat small {
+        white-space:
+            normal;
+    }
+
+    .home-layout {
+        display:
+            block;
+    }
+
+    .feed-column {
+        width:
+            100%;
+    }
+
+    .stories-section,
+    .create-post,
+    .feed-post,
+    .reel-card,
+    .empty-feed {
+        border-radius:
+            14px;
+    }
+
+    .stories-section {
+        padding:
+            13px;
+    }
+
+    .create-post {
+        padding:
+            13px;
+    }
+
+    .feed-toolbar {
+        margin:
+            14px
+            1px
+            8px;
+    }
+
+    .feed-filter {
+        display:
+            none;
+    }
+
+    .reel-video {
+        width:
+            min(
+                100%,
+                360px
+            );
+
+        height:
+            500px;
+    }
+
+    .reel-viewer-content {
+        width:
+            100vw;
+
+        height:
+            100vh;
+    }
+
+    .reel-viewer-video-wrap {
+        width:
+            min(
+                94vw,
+                390px
+            );
+
+        height:
+            min(
+                82vh,
+                680px
+            );
+    }
+
+    .reel-viewer-info {
+        left:
+            calc(
+                50% - 42vw
+            );
+
+        bottom:
+            10vh;
+
+        width:
+            68vw;
+    }
+
+    .reel-viewer-actions {
+        left:
+            auto;
+
+        right:
+            7vw;
+
+        bottom:
+            14vh;
+    }
+
+    .mobile-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        height:
+            65px;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+        border-top:
+            1px solid var(--line);
+
+        background:
+            rgba(255,255,255,.94);
+
+        backdrop-filter:
+            blur(18px);
+
+        z-index:
+            3000;
+    }
+
+    .mobile-nav-item {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 3px;
+
+        color:
+            #8992a3;
+
+        font-size: 18px;
+    }
+
+    .mobile-nav-item small {
+        font-size: 8px;
+        font-weight: 700;
+    }
+
+    .mobile-nav-item.active {
+        color:
+            var(--royal);
+    }
+
+    .mobile-nav-item.active::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        width: 28px;
+        height: 2px;
+
+        border-radius: 2px;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--royal),
+                var(--cyan)
+            );
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .topbar-search {
+        width:
+            38%;
+    }
+
+    .topbar-actions {
+        gap:
+            3px;
+    }
+
+    .top-create-button {
+        width:
+            34px;
+
+        justify-content:
+            center;
+
+        padding:
+            0;
+    }
+
+    .home-intro h1 {
+        font-size:
+            23px;
+    }
+
+    .stories-container {
+        gap:
+            10px;
+    }
+
+    .story {
+        width:
+            57px;
+    }
+
+    .story-ring,
+    .story-avatar-wrapper {
+        width:
+            53px;
+
+        height:
+            53px;
+    }
+
+    .create-post-actions {
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .reel-video {
+        height:
+            470px;
+    }
+
+    .reel-action {
+        width:
+            39px;
+
+        height:
+            39px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline:
+        2px solid
+        rgba(89,100,233,.45);
+
+    outline-offset:
+        2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}
+
+
+/* =========================================================
+   NEXA — BLACK & GOLD LUXURY BACKGROUND
+   WHITE UI SURFACES
+   ========================================================= */
+
+html,
+body {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(212, 175, 55, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(212, 175, 55, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #030303 0%,
+            #090806 45%,
+            #12100b 100%
+        ) !important;
+}
+
+/* Main page stays dark */
+.nexa-app,
+.main-content,
+.home-page {
+    background: transparent !important;
+}
+
+/* =========================================================
+   WHITE PREMIUM UI
+   ========================================================= */
+
+.sidebar,
+.topbar {
+    background: rgba(255, 255, 255, 0.97) !important;
+}
+
+/* White content cards */
+.stories-section,
+.create-post,
+.feed-toolbar,
+.home-side-card,
+.nexa-side-banner,
+.empty-feed,
+.feed-post,
+.post-card,
+.reel-card {
+    background: #ffffff !important;
+}
+
+/* Keep the reel area clean and white */
+.feed-posts {
+    background: transparent !important;
+}
+
+/* White search box */
+.topbar-search {
+    background: #ffffff !important;
+}
+
+/* Gold luxury accents */
+.logo,
+.mobile-logo,
+.section-eyebrow,
+.home-eyebrow {
+    color: #b8942e;
+}
+
+/* Gold borders on selected premium elements */
+.topbar-search:focus-within {
+    border-color: rgba(184, 148, 46, 0.65) !important;
+}
+
+.nav-item.active {
+    color: #9a7720 !important;
+}
+
+/* Gold primary buttons */
+.composer-post-button,
+.intro-action.primary,
+.discover-button,
+.empty-feed-button {
+    background: linear-gradient(
+        135deg,
+        #b8942e,
+        #d4af37
+    ) !important;
+
+    color: #080706 !important;
+}
+
+/* Gold hover */
+.composer-post-button:hover,
+.intro-action.primary:hover,
+.discover-button:hover,
+.empty-feed-button:hover {
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #f0d477
+    ) !important;
+}
+
+/* =========================================================
+   NEXA — KEEP UI WHITE, CHANGE ONLY THE PAGE BACKGROUND
+   ========================================================= */
+
+/* BLACK + GOLD BACKGROUND */
+html,
+body {
+    background:
+        radial-gradient(
+            circle at 18% 12%,
+            rgba(212, 175, 55, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 82%,
+            rgba(212, 175, 55, 0.09),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #020202 0%,
+            #080806 50%,
+            #151208 100%
+        ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR — KEEP IT DARK
+   --------------------------------------------------------- */
+
+.sidebar {
+    background:
+        linear-gradient(
+            180deg,
+            #090909,
+            #030303
+        ) !important;
+
+    color: #ffffff !important;
+
+    border-right:
+        1px solid rgba(212, 175, 55, 0.18) !important;
+}
+
+
+/* ---------------------------------------------------------
+   TOP NAVBAR — KEEP IT DARK
+   --------------------------------------------------------- */
+
+.topbar {
+    background:
+        rgba(7, 7, 7, 0.94) !important;
+
+    border-bottom:
+        1px solid rgba(212, 175, 55, 0.16) !important;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH — DARK
+   --------------------------------------------------------- */
+
+.topbar-search {
+    background:
+        rgba(255, 255, 255, 0.07) !important;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10) !important;
+
+    color: #ffffff !important;
+}
+
+.topbar-search input {
+    color: #000000 !important;
+}
+
+.topbar-search input::placeholder {
+    color: rgba(11, 11, 11, 0.45) !important;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN FEED CARDS — DARK
+   --------------------------------------------------------- */
+
+.stories-section,
+.create-post,
+.feed-toolbar,
+.home-side-card,
+.nexa-side-banner,
+.empty-feed,
+.feed-post,
+.reel-card {
+    background:
+        linear-gradient(
+            145deg,
+            #111111,
+            #080808
+        ) !important;
+
+    color: #ffffff !important;
+
+    border:
+        1px solid rgba(255,255,255,.08) !important;
+}
+
+
+/* ---------------------------------------------------------
+   REEL BACKGROUND
+   --------------------------------------------------------- */
+
+.reel-video,
+.reel-viewer-video-wrap {
+    background:
+        #000000 !important;
+}
+
+
+/* ---------------------------------------------------------
+   GOLD ACCENTS
+   --------------------------------------------------------- */
+
+.logo,
+.mobile-logo {
+    background:
+        linear-gradient(
+            90deg,
+            #f5e6a8,
+            #d4af37,
+            #9b7420
+        ) !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+
+    -webkit-text-fill-color: transparent !important;
+}
+
+.section-eyebrow,
+.home-eyebrow {
+    color: #d4af37 !important;
+}
+
+
+/* ACTIVE NAV */
+.nav-item.active {
+    color: #d4af37 !important;
+
+    background:
+        rgba(212,175,55,.08) !important;
+
+    border-color:
+        rgba(212,175,55,.18) !important;
+}
+
+
+/* CREATE / PRIMARY BUTTON */
+.composer-post-button,
+.intro-action.primary,
+.discover-button,
+.empty-feed-button {
+    background:
+        linear-gradient(
+            135deg,
+            #a27a16,
+            #d4af37
+        ) !important;
+
+    color: #080706 !important;
+}
+
+/* =========================================================
+   NEXA MOBILE BOTTOM BAR — BLACK + GOLD
+========================================================= */
+
+.mobile-nav {
+    background:
+        rgba(5, 5, 4, 0.97) !important;
+
+    border-top:
+        1px solid rgba(212, 175, 55, 0.20) !important;
+
+    box-shadow:
+        0 -15px 45px rgba(0, 0, 0, 0.65),
+        0 -2px 20px rgba(212, 175, 55, 0.04) !important;
+
+    backdrop-filter:
+        blur(24px) !important;
+
+    -webkit-backdrop-filter:
+        blur(24px) !important;
+}
+
+.mobile-nav-item {
+    color:
+        rgba(255,255,255,.48) !important;
+}
+
+.mobile-nav-item.active {
+    color:
+        #d4af37 !important;
+}
+
+.mobile-nav-item.active::before {
+    background:
+        linear-gradient(
+            90deg,
+            #9b7420,
+            #d4af37,
+            #f2d675
+        ) !important;
+
+    box-shadow:
+        0 0 14px rgba(212,175,55,.45) !important;
+}
+
+
+/* =========================================================
+   NEXA STORY VIEWER — PREMIUM UI
+   ========================================================= */
+
+.story-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0, 234, 255, 0.08),
+            transparent 35%
+        ),
+        rgba(3, 6, 18, 0.96);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   STORY CONTENT
+   ========================================================= */
+
+.story-viewer-content {
+    position: relative;
+
+    width: min(430px, 90vw);
+    height: min(760px, 82vh);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background: #050816;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0, 0, 0, 0.65),
+        0 0 50px
+        rgba(0, 234, 255, 0.08);
+}
+
+
+/* =========================================================
+   STORY IMAGE
+   ========================================================= */
+
+.story-viewer-content img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================================================
+   STORY VIDEO
+   ========================================================= */
+
+.story-viewer-content video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #000;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.story-viewer-close {
+    position: absolute;
+
+    top: 24px;
+    right: 28px;
+
+    z-index: 20;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.14);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: #fff;
+
+    font-size: 28px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.story-viewer-close:hover {
+    transform: scale(1.08);
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    border-color:
+        rgba(255, 255, 255, 0.28);
+}
+
+
+/* =========================================================
+   ACTION BAR
+   ========================================================= */
+
+.story-viewer-actions {
+    position: absolute;
+
+    left: 50%;
+    bottom: 30px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 9px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.13);
+
+    border-radius: 22px;
+
+    background:
+        rgba(8, 12, 28, 0.72);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 14px 40px
+        rgba(0, 0, 0, 0.42);
+}
+
+
+/* =========================================================
+   ACTION BUTTON
+   ========================================================= */
+
+.story-viewer-action {
+    min-width: 72px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 15px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.story-viewer-action:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-color:
+        rgba(255, 255, 255, 0.18);
+
+    color: #fff;
+}
+
+.story-viewer-action:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   ACTION ICON
+   ========================================================= */
+
+.story-viewer-action-icon {
+    font-size: 20px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   ACTIVE LIKE
+   ========================================================= */
+
+.story-viewer-action.active {
+    background:
+        rgba(255, 70, 110, 0.14);
+
+    border-color:
+        rgba(255, 90, 125, 0.30);
+
+    color: #ff5b87;
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 70, 110, 0.12);
+}
+
+.story-viewer-action.active
+.story-viewer-action-icon {
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   STORY PREVIEW CIRCLES
+   ========================================================= */
+
+.story-ring {
+    position: relative;
+
+    width: 68px;
+    height: 68px;
+
+    padding: 3px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff,
+            #0066ff,
+            #7b2cff
+        );
+
+    box-shadow:
+        0 0 22px
+        rgba(0, 234, 255, 0.18);
+}
+
+.story-ring::after {
+    content: "";
+
+    position: absolute;
+    inset: 3px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    border:
+        2px solid
+        rgba(5, 8, 22, 0.85);
+}
+
+.story-ring img,
+.story-ring video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    background: #050816;
+}
+
+
+/* =========================================================
+   YOUR STORY AVATAR
+   ========================================================= */
+
+.create-story .story-avatar-wrapper {
+    position: relative;
+
+    width: 68px;
+    height: 68px;
+}
+
+.create-story .story-avatar {
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 234, 255, 0.20),
+            rgba(0, 102, 255, 0.20)
+        );
+
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.16);
+
+    color: #fff;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.create-story .story-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   ADD STORY BUTTON
+   ========================================================= */
+
+.add-story {
+    position: absolute;
+
+    right: -2px;
+    bottom: -2px;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        #050816;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff,
+            #0066ff
+        );
+
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0, 102, 255, 0.30);
+
+    transition:
+        transform 0.2s ease;
+}
+
+.add-story:hover {
+    transform: scale(1.12);
+}
+
+
+/* =========================================================
+   STORY LABELS
+   ========================================================= */
+
+.story > span,
+.create-story > span {
+    margin-top: 8px;
+
+    max-width: 78px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size: 12px;
+    font-weight: 500;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .story-viewer {
+        padding: 12px;
+    }
+
+    .story-viewer-content {
+        width: 94vw;
+        height: 82vh;
+
+        border-radius: 22px;
+    }
+
+    .story-viewer-close {
+        top: 16px;
+        right: 18px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 24px;
+    }
+
+    .story-viewer-actions {
+        bottom: 20px;
+
+        width: calc(100% - 28px);
+
+        gap: 7px;
+
+        padding: 7px;
+
+        border-radius: 18px;
+    }
+
+    .story-viewer-action {
+        flex: 1;
+
+        min-width: 0;
+
+        height: 46px;
+
+        padding: 0 10px;
+
+        font-size: 14px;
+    }
+
+    .story-viewer-action-icon {
+        font-size: 19px;
+    }
+
+    .story-ring,
+    .create-story .story-avatar-wrapper,
+    .create-story .story-avatar {
+        width: 62px;
+        height: 62px;
+    }
+}
+
+
+/* =========================================================
+   NEXA STORY COMMENT PANEL
+   ========================================================= */
+
+.story-comment-panel {
+    position: absolute;
+
+    left: 50%;
+    bottom: 105px;
+
+    transform: translateX(-50%);
+
+    z-index: 100;
+
+    width: min(430px, calc(100vw - 32px));
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.story-comment-panel-box {
+    width: 100%;
+
+    padding: 14px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+    border-radius: 20px;
+
+    background:
+        rgba(8, 12, 28, 0.88);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.48);
+}
+
+
+.story-comment-panel-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    color: #fff;
+}
+
+
+.story-comment-panel-header strong {
+    font-size: 14px;
+}
+
+
+.story-comment-panel-header button {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: #fff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+.story-comment-form {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.story-comment-form input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 44px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: #fff;
+
+    font-family: inherit;
+}
+
+
+.story-comment-form input::placeholder {
+    color:
+        rgba(255, 255, 255, 0.48);
+}
+
+
+.story-comment-form button {
+    height: 44px;
+
+    padding:
+        0 17px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff,
+            #0066ff
+        );
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+
+    .story-comment-panel {
+
+        bottom: 92px;
+
+        width:
+            calc(100vw - 24px);
+    }
+}
+/* =========================================================
+   NEXA HOME — PHONE OPTIMIZATION
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* -----------------------------------------------------
+       GLOBAL
+       ----------------------------------------------------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       MAIN APP
+       ----------------------------------------------------- */
+
+    .nexa-app {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .main-content {
+        width: 100%;
+        min-width: 0;
+        padding-bottom: 78px;
+    }
+
+    .home-page {
+        width: 100%;
+        padding: 0 12px 24px;
+    }
+
+
+    /* -----------------------------------------------------
+       TOPBAR
+       ----------------------------------------------------- */
+
+    .topbar {
+        width: 100%;
+        min-height: 58px;
+
+        padding: 8px 12px;
+
+        gap: 8px;
+    }
+
+    .mobile-logo {
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    .topbar-search {
+        min-width: 0;
+        flex: 1;
+        height: 40px;
+    }
+
+    .topbar-search input {
+        width: 100%;
+        min-width: 0;
+        font-size: 13px;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+
+    .topbar-actions {
+        gap: 5px;
+        flex-shrink: 0;
+    }
+
+    .top-create-button {
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+
+        padding: 0;
+
+        border-radius: 12px;
+    }
+
+    .top-create-button strong {
+        display: none;
+    }
+
+    .top-create-button span {
+        font-size: 20px;
+    }
+
+    .topbar-btn {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .mini-profile {
+        width: 38px;
+        height: 38px;
+    }
+
+    .mini-avatar {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    /* -----------------------------------------------------
+       HERO
+       ----------------------------------------------------- */
+
+    .home-intro {
+        margin-top: 10px;
+
+        padding: 18px 15px;
+
+        border-radius: 18px;
+
+        gap: 14px;
+    }
+
+    .home-eyebrow,
+    .section-eyebrow {
+        font-size: 9px;
+        letter-spacing: 0.12em;
+    }
+
+    .home-intro h1 {
+        margin: 5px 0 8px;
+
+        font-size: clamp(
+            24px,
+            7vw,
+            34px
+        );
+
+        line-height: 1.05;
+    }
+
+    .home-intro p {
+        max-width: 100%;
+
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    .home-intro-actions {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+    .intro-action {
+        width: 100%;
+
+        min-height: 40px;
+
+        padding: 9px 10px;
+
+        font-size: 12px;
+    }
+
+
+    /* -----------------------------------------------------
+       QUICK STATS
+       ----------------------------------------------------- */
+
+    .quick-stats {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 7px;
+
+        margin-top: 10px;
+    }
+
+    .quick-stat {
+        min-width: 0;
+
+        padding: 10px 8px;
+
+        border-radius: 14px;
+    }
+
+    .quick-stat-icon {
+        font-size: 16px;
+    }
+
+    .quick-stat strong {
+        font-size: 11px;
+    }
+
+    .quick-stat small {
+        display: block;
+
+        margin-top: 2px;
+
+        font-size: 8px;
+
+        line-height: 1.25;
+    }
+
+
+    /* -----------------------------------------------------
+       MAIN GRID
+       ----------------------------------------------------- */
+
+    .home-layout {
+        display: block;
+        width: 100%;
+    }
+
+    .feed-column {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .home-right-column {
+        display: none;
+    }
+
+
+    /* -----------------------------------------------------
+       STORIES
+       ----------------------------------------------------- */
+
+    .stories-section {
+        margin-top: 12px;
+
+        padding: 13px 11px;
+
+        border-radius: 18px;
+    }
+
+    .stories-header {
+        margin-bottom: 10px;
+    }
+
+    .stories-header h2 {
+        font-size: 18px;
+    }
+
+    .section-link {
+        font-size: 11px;
+    }
+
+    .stories-container {
+        width: 100%;
+
+        display: flex;
+
+        gap: 9px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding-bottom: 3px;
+
+        scrollbar-width: none;
+    }
+
+    .stories-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .story {
+        flex: 0 0 64px;
+
+        width: 64px;
+    }
+
+    .story-ring {
+        width: 60px;
+        height: 60px;
+    }
+
+    .create-story .story-avatar-wrapper,
+    .create-story .story-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .story > span,
+    .create-story > span {
+        display: block;
+
+        width: 60px;
+
+        margin-top: 6px;
+
+        font-size: 9px;
+
+        line-height: 1.2;
+    }
+
+    .add-story {
+        width: 21px;
+        height: 21px;
+
+        font-size: 14px;
+
+        border-width: 2px;
+    }
+
+
+    /* -----------------------------------------------------
+       CREATE POST
+       ----------------------------------------------------- */
+
+    .create-post {
+        margin-top: 12px;
+
+        padding: 13px;
+
+        border-radius: 18px;
+    }
+
+    .composer-header {
+        gap: 9px;
+    }
+
+    .post-avatar {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .composer-heading strong {
+        font-size: 12px;
+    }
+
+    .composer-heading span {
+        font-size: 9px;
+    }
+
+    .create-post-top {
+        margin-top: 10px;
+    }
+
+    .create-post-top input {
+        width: 100%;
+        height: 42px;
+
+        padding: 0 12px;
+
+        font-size: 12px;
+    }
+
+    .create-post-actions {
+        gap: 6px;
+
+        margin-top: 9px;
+    }
+
+    .composer-action {
+        min-width: 0;
+
+        height: 38px;
+
+        padding:
+            0 8px;
+
+        gap: 4px;
+
+        border-radius: 11px;
+
+        font-size: 10px;
+    }
+
+    .composer-action-icon {
+        font-size: 13px;
+    }
+
+    .composer-post-button {
+        height: 38px;
+
+        padding:
+            0 13px;
+
+        border-radius: 11px;
+
+        font-size: 10px;
+    }
+
+
+    /* -----------------------------------------------------
+       FEED TOOLBAR
+       ----------------------------------------------------- */
+
+    .feed-toolbar {
+        margin-top: 15px;
+
+        gap: 8px;
+    }
+
+    .feed-toolbar h2 {
+        font-size: 18px;
+    }
+
+    .feed-filter {
+        gap: 4px;
+    }
+
+    .feed-filter button {
+        padding:
+            6px 8px;
+
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------------------
+       POSTS
+       ----------------------------------------------------- */
+
+    .feed-posts {
+        width: 100%;
+    }
+
+    .feed-post,
+    .reel-card {
+        width: 100%;
+
+        margin-bottom: 12px;
+
+        border-radius: 18px;
+
+        overflow: hidden;
+    }
+
+    .post-header,
+    .reel-header {
+        padding: 11px 12px;
+    }
+
+    .post-author {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .post-user-avatar {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+    }
+
+    .post-author h3 {
+        max-width: 150px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        font-size: 12px;
+    }
+
+    .post-author span {
+        font-size: 9px;
+    }
+
+    .post-caption {
+        padding:
+            0 12px 10px;
+
+        font-size: 12px;
+
+        line-height: 1.45;
+    }
+
+    .post-actions,
+    .reel-actions {
+        gap: 2px;
+
+        padding: 8px 9px;
+    }
+
+    .post-actions button,
+    .reel-action {
+        min-width: 0;
+        flex: 1;
+
+        min-height: 36px;
+
+        padding:
+            5px 6px;
+
+        border-radius: 10px;
+
+        font-size: 11px;
+    }
+
+    .reel-action-icon {
+        font-size: 16px;
+    }
+
+    .reel-caption {
+        padding: 10px;
+    }
+
+    .reel-caption h3 {
+        font-size: 13px;
+    }
+
+    .reel-caption p {
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------------------
+       NORMAL MEDIA
+       ----------------------------------------------------- */
+
+    .post-media {
+        width: 100%;
+    }
+
+    .post-media img,
+    .post-media video {
+        width: 100%;
+
+        max-height: 72vh;
+
+        object-fit: cover;
+    }
+
+
+    /* -----------------------------------------------------
+       EMPTY FEED
+       ----------------------------------------------------- */
+
+    .empty-feed {
+        padding: 32px 14px;
+
+        border-radius: 18px;
+    }
+
+    .empty-feed h2 {
+        font-size: 18px;
+    }
+
+    .empty-feed p {
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------------------------------
+       STORY VIEWER
+       ----------------------------------------------------- */
+
+    .story-viewer {
+        padding: 8px;
+    }
+
+    .story-viewer-content {
+        width: 94vw;
+        height: 82vh;
+
+        border-radius: 20px;
+    }
+
+    .story-viewer-close {
+        top: 14px;
+        right: 14px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 22px;
+    }
+
+    .story-viewer-actions {
+        bottom: 18px;
+
+        width:
+            calc(100% - 24px);
+
+        gap: 5px;
+
+        padding: 6px;
+
+        border-radius: 16px;
+    }
+
+    .story-viewer-action {
+        flex: 1;
+
+        min-width: 0;
+
+        height: 42px;
+
+        padding:
+            0 8px;
+
+        gap: 4px;
+
+        border-radius: 11px;
+
+        font-size: 12px;
+    }
+
+    .story-viewer-action-icon {
+        font-size: 17px;
+    }
+
+
+    /* -----------------------------------------------------
+       STORY COMMENT PANEL
+       ----------------------------------------------------- */
+
+    .story-comment-panel {
+        bottom: 78px;
+
+        width:
+            calc(100vw - 20px);
+    }
+
+    .story-comment-panel-box {
+        padding: 11px;
+
+        border-radius: 17px;
+    }
+
+    .story-comment-form {
+        gap: 6px;
+    }
+
+    .story-comment-form input {
+        height: 40px;
+
+        padding:
+            0 11px;
+
+        font-size: 12px;
+    }
+
+    .story-comment-form button {
+        height: 40px;
+
+        padding:
+            0 13px;
+
+        border-radius: 11px;
+
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------------------------------
+       COMMENTS MODAL
+       ----------------------------------------------------- */
+
+    .comments-modal {
+        padding: 10px;
+    }
+
+    .comments-modal-box {
+        width: 100%;
+
+        max-height: 82vh;
+
+        border-radius: 18px;
+    }
+
+    .comments-modal-header {
+        padding: 12px;
+    }
+
+    .comments-modal-header h2 {
+        font-size: 17px;
+    }
+
+    .comments-list {
+        max-height: 48vh;
+
+        padding: 10px;
+    }
+
+    .comment-form {
+        gap: 6px;
+
+        padding: 10px;
+    }
+
+    .comment-form input {
+        height: 40px;
+
+        min-width: 0;
+
+        font-size: 12px;
+    }
+
+    .comment-form button {
+        height: 40px;
+
+        padding:
+            0 12px;
+
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------------------------------
+       MEDIA PREVIEW
+       ----------------------------------------------------- */
+
+    .media-preview-modal {
+        padding: 10px;
+    }
+
+    .media-preview-box {
+        width: 100%;
+
+        max-height: 88vh;
+
+        border-radius: 18px;
+    }
+
+    .media-preview-content {
+        max-height: 65vh;
+    }
+
+
+    /* -----------------------------------------------------
+       REEL VIEWER
+       ----------------------------------------------------- */
+
+    .reel-viewer-content {
+        width: 100%;
+        max-width: 100%;
+
+        height: 100%;
+    }
+
+    .reel-viewer-actions {
+        gap: 5px;
+
+        padding:
+            7px;
+
+        left: 10px;
+        right: 10px;
+
+        bottom: 16px;
+    }
+
+    .reel-viewer-action {
+        min-width: 0;
+
+        flex: 1;
+
+        height: 42px;
+
+        padding:
+            0 7px;
+
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE NAV
+       ----------------------------------------------------- */
+
+    .mobile-nav {
+        width: 100%;
+
+        height: 62px;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding:
+            6px 10px;
+
+        gap: 4px;
+
+        z-index: 999;
+    }
+
+    .mobile-nav-item {
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 5px 4px;
+
+        font-size: 17px;
+    }
+
+    .mobile-nav-item small {
+        font-size: 8px;
+    }
+}
+
+
+/* =========================================================
+   NEXA MOBILE — PHOTO POST FIX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* -----------------------------------------------------
+       PHOTO MEDIA
+       Instagram-style proportions
+       ----------------------------------------------------- */
+
+    .feed-post .post-media[data-media-type="image"] {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+
+        overflow: hidden;
+
+        background: #050816;
+    }
+
+    .feed-post .post-media[data-media-type="image"] img {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+    }
+
+
+    /* -----------------------------------------------------
+       PHOTO POST ACTION BAR
+       ----------------------------------------------------- */
+
+    .feed-post .post-actions {
+        display: flex;
+        align-items: center;
+
+        width: 100%;
+
+        padding: 8px 10px;
+
+        gap: 5px;
+
+        background: rgba(5, 8, 22, 0.96);
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, 0.07);
+    }
+
+
+    /* -----------------------------------------------------
+       ACTION BUTTONS
+       ----------------------------------------------------- */
+
+    .feed-post .post-actions button {
+        flex: 1;
+
+        min-width: 0;
+        min-height: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 5px;
+
+        padding: 7px 5px;
+
+        border: 0;
+        border-radius: 11px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        color:
+            rgba(255, 255, 255, 0.82);
+
+        font-size: 11px;
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+
+    /* -----------------------------------------------------
+       ICONS
+       ----------------------------------------------------- */
+
+    .feed-post .post-actions button span:first-child {
+        font-size: 17px;
+
+        line-height: 1;
+    }
+
+
+    /* -----------------------------------------------------
+       LIKE
+       ----------------------------------------------------- */
+
+    .feed-post .post-actions
+    button[data-action="like"] {
+        color:
+            rgba(255, 255, 255, 0.88);
+    }
+
+    .feed-post .post-actions
+    button[data-action="like"].liked {
+        color: #ff5b87;
+
+        background:
+            rgba(255, 70, 110, 0.10);
+    }
+
+
+    /* -----------------------------------------------------
+       SAVE BUTTON
+       Keep it compact
+       ----------------------------------------------------- */
+
+    .feed-post .post-actions
+    button[data-action="save"] {
+        flex: 0 0 42px;
+
+        max-width: 42px;
+
+        font-size: 18px;
+    }
+
+
+    /* -----------------------------------------------------
+       PHOTO CAPTION
+       ----------------------------------------------------- */
+
+    .feed-post .post-caption {
+        padding:
+            10px 12px 8px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+
+        color:
+            rgba(255, 255, 255, 0.88);
+    }
+
+
+    /* -----------------------------------------------------
+       PHOTO HEADER
+       ----------------------------------------------------- */
+
+    .feed-post .post-header {
+        min-height: 52px;
+
+        padding:
+            9px 11px;
+    }
+
+
+    .feed-post .post-author h3 {
+        font-size: 12px;
+    }
+
+
+    .feed-post .post-author span {
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------------------
+       PHOTO CARD
+       ----------------------------------------------------- */
+
+    .feed-post {
+        border-radius: 16px;
+
+        overflow: hidden;
+
+        margin-bottom: 12px;
+    }
+}
+
+
+/* =========================================================
+   NEXA HOME — PHOTO POST ACTION AREA
+   Clean dark Instagram-style controls
+   ========================================================= */
+
+.feed-post {
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   ACTION BAR
+   --------------------------------------------------------- */
+
+.feed-post .post-actions {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+
+    gap: 4px;
+
+    background: #050816;
+
+    border: 0;
+}
+
+
+/* ---------------------------------------------------------
+   ALL ACTION BUTTONS
+   --------------------------------------------------------- */
+
+.feed-post .post-actions button {
+    flex: 1;
+
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 8px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER / PRESS
+   --------------------------------------------------------- */
+
+.feed-post .post-actions button:hover {
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: #ffffff;
+}
+
+.feed-post .post-actions button:active {
+    transform: scale(0.95);
+}
+
+
+/* ---------------------------------------------------------
+   ICON
+   --------------------------------------------------------- */
+
+.feed-post .post-actions button span:first-child {
+    font-size: 20px;
+
+    line-height: 1;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ---------------------------------------------------------
+   LIKE
+   --------------------------------------------------------- */
+
+.feed-post .post-actions
+button[data-action="like"].liked {
+    color: #ff5c87;
+}
+
+.feed-post .post-actions
+button[data-action="like"].liked
+span:first-child {
+    color: #ff5c87;
+}
+
+
+/* ---------------------------------------------------------
+   SAVE
+   --------------------------------------------------------- */
+
+.feed-post .post-actions
+button[data-action="save"] {
+    flex: 0 0 42px;
+
+    max-width: 42px;
+}
+
+.feed-post .post-actions
+button[data-action="save"] span:first-child {
+    font-size: 21px;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .feed-post .post-actions {
+        padding: 8px 8px;
+
+        gap: 2px;
+
+        background: #050816;
+    }
+
+    .feed-post .post-actions button {
+        height: 38px;
+
+        padding: 0 5px;
+
+        gap: 4px;
+
+        border-radius: 9px;
+
+        font-size: 10px;
+    }
+
+    .feed-post .post-actions
+    button span:first-child {
+        font-size: 18px;
+    }
+
+    .feed-post .post-actions
+    button[data-action="save"] {
+        flex: 0 0 38px;
+
+        max-width: 38px;
+    }
+}
+/* =========================================================
+   NEXA MOBILE — SEARCH BAR FIX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+
+    /* -----------------------------------------------------
+       SEARCH AREA
+       ----------------------------------------------------- */
+
+    .topbar-search {
+        flex: 1 1 auto;
+
+        width: auto;
+        min-width: 0;
+
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+
+        border-radius: 13px;
+
+        overflow: hidden;
+    }
+
+
+    .topbar-search input {
+        flex: 1;
+
+        width: 100%;
+        min-width: 0;
+
+        height: 100%;
+
+        padding:
+            0 10px 0 8px;
+
+        font-size: 12px;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .search-icon {
+        flex: 0 0 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 17px;
+    }
+
+
+    /* -----------------------------------------------------
+       TOP RIGHT ICONS
+       ----------------------------------------------------- */
+
+    .topbar-actions {
+        flex: 0 0 auto;
+
+        display: flex;
+        align-items: center;
+
+        gap: 4px;
+    }
+
+
+    .topbar-actions
+    .top-create-button {
+        width: 38px;
+        min-width: 38px;
+        flex: 0 0 38px;
+    }
+
+
+    .topbar-actions
+    .topbar-btn {
+        width: 36px;
+        min-width: 36px;
+        flex: 0 0 36px;
+    }
+
+
+    .topbar-actions
+    .mini-profile {
+        width: 36px;
+        min-width: 36px;
+        flex: 0 0 36px;
+    }
+
+
+    /* -----------------------------------------------------
+       SMALL PHONES
+       ----------------------------------------------------- */
+
+    @media (max-width: 380px) {
+
+        .mobile-logo {
+            font-size: 16px;
+        }
+
+        .topbar {
+            gap: 5px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .topbar-actions {
+            gap: 2px;
+        }
+
+        .topbar-actions
+        .top-create-button {
+            width: 34px;
+            min-width: 34px;
+            flex-basis: 34px;
+        }
+
+        .topbar-actions
+        .topbar-btn {
+            width: 33px;
+            min-width: 33px;
+            flex-basis: 33px;
+        }
+
+        .topbar-actions
+        .mini-profile {
+            width: 33px;
+            min-width: 33px;
+            flex-basis: 33px;
+        }
+
+        .topbar-search {
+            height: 38px;
+        }
+    }
+}
+
+/* =========================================================
+   NEXA MOBILE — FINAL SEARCH BAR LAYOUT
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        display: grid;
+
+        grid-template-columns:
+            auto
+            minmax(0, 1fr)
+            auto;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding:
+            8px 10px;
+    }
+
+
+    /* -----------------------------------------------------
+       LOGO
+       ----------------------------------------------------- */
+
+    .mobile-logo {
+        flex: none;
+
+        width: auto;
+
+        font-size: 18px;
+
+        white-space: nowrap;
+    }
+
+
+    /* -----------------------------------------------------
+       SEARCH
+       ----------------------------------------------------- */
+
+    .topbar-search {
+        width: 100%;
+        min-width: 0;
+
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+
+        border-radius: 12px;
+
+        overflow: hidden;
+    }
+
+
+    .topbar-search input {
+        width: 100%;
+        min-width: 0;
+
+        flex: 1;
+
+        height: 100%;
+
+        padding:
+            0 12px;
+
+        font-size: 13px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .search-icon {
+        flex: 0 0 30px;
+
+        width: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 17px;
+    }
+
+
+    .search-shortcut {
+        display: none;
+    }
+
+
+    /* -----------------------------------------------------
+       TOP ACTIONS
+       ----------------------------------------------------- */
+
+    .topbar-actions {
+        display: flex;
+
+        align-items: center;
+
+        gap: 4px;
+
+        flex: none;
+    }
+
+
+    /* Create button: icon only */
+
+    .top-create-button {
+        width: 36px;
+        min-width: 36px;
+
+        height: 36px;
+
+        padding: 0;
+    }
+
+
+    .top-create-button strong {
+        display: none;
+    }
+
+
+    /* Notification */
+
+    .topbar-actions
+    .notification-trigger {
+        width: 36px;
+        min-width: 36px;
+
+        height: 36px;
+
+        padding: 0;
+    }
+
+
+    /* Hide Messages icon from the topbar on phones.
+       Mobile bottom navigation already contains Messages. */
+
+    .topbar-actions
+    a.topbar-btn[href="messages.html"] {
+        display: none;
+    }
+
+
+    /* Profile */
+
+    .mini-profile {
+        width: 36px;
+        min-width: 36px;
+
+        height: 36px;
+    }
+
+
+    .mini-avatar {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .topbar {
+        gap: 6px;
+
+        padding:
+            7px 8px;
+    }
+
+    .mobile-logo {
+        font-size: 16px;
+    }
+
+    .topbar-search {
+        height: 38px;
+    }
+
+    .topbar-search input {
+        font-size: 12px;
+        padding: 0 9px;
+    }
+
+    .topbar-actions {
+        gap: 3px;
+    }
+
+    .top-create-button,
+    .topbar-actions
+    .notification-trigger,
+    .mini-profile {
+        width: 33px;
+        min-width: 33px;
+        height: 33px;
+    }
+
+    .mini-avatar {
+        width: 29px;
+        height: 29px;
+    }
+}
+
+/* =========================================================
+   NEXA REELS — RIGHT-SIDE ACTION BUTTONS
+   ========================================================= */
+
+.reel-card .reel-video {
+    position: relative;
+}
+
+.reel-card .reel-actions {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: 0;
+}
+
+
+/* ---------------------------------------------------------
+   INDIVIDUAL REEL ACTION
+   --------------------------------------------------------- */
+
+.reel-card .reel-actions .reel-action {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+
+    padding: 0;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.16);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.42);
+
+    color: #fff;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease;
+}
+
+.reel-card .reel-actions
+.reel-action:hover {
+    transform: scale(1.08);
+
+    background:
+        rgba(0, 0, 0, 0.62);
+}
+
+
+/* ---------------------------------------------------------
+   ICON
+   --------------------------------------------------------- */
+
+.reel-card .reel-action-icon {
+    font-size: 19px;
+
+    line-height: 1;
+}
+
+
+/* ---------------------------------------------------------
+   LIKED
+   --------------------------------------------------------- */
+
+.reel-card .reel-action.liked {
+    color: #ff5c87;
+
+    background:
+        rgba(255, 60, 110, 0.16);
+
+    border-color:
+        rgba(255, 90, 130, 0.35);
+}
+
+
+/* ---------------------------------------------------------
+   SAVED
+   --------------------------------------------------------- */
+
+.reel-card .reel-action.saved {
+    color: #00eaff;
+}
+
+
+/* =========================================================
+   MOBILE REELS
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .reel-card .reel-actions {
+        right: 9px;
+
+        gap: 9px;
+    }
+
+    .reel-card .reel-actions
+    .reel-action {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+
+        font-size: 9px;
+    }
+
+    .reel-card .reel-action-icon {
+        font-size: 17px;
+    }
+}
+
+/* =========================================================
+   NEXA REELS — MOBILE ACTION POSITION
+   Move actions away from screen center
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .reel-card .reel-actions {
+        top: auto;
+
+        right: 10px;
+        bottom: 72px;
+
+        transform: none;
+
+        gap: 8px;
+    }
+
+    .reel-card .reel-actions
+    .reel-action {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+    }
+}
+
+/* =========================================================
+   FINAL MOBILE REEL ACTION POSITION
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .reel-card .reel-video {
+        position: relative !important;
+    }
+
+    .reel-card .reel-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+        pointer-events: none;
+    }
+
+    .reel-card .reel-overlay .reel-actions {
+        position: absolute !important;
+
+        top: auto !important;
+        bottom: 88px !important;
+
+        right: 8px !important;
+        left: auto !important;
+
+        width: 44px !important;
+        height: auto !important;
+
+        transform: none !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        gap: 9px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: transparent !important;
+        border: 0 !important;
+
+        pointer-events: auto;
+    }
+
+    .reel-card .reel-overlay .reel-action {
+        position: relative !important;
+
+        width: 40px !important;
+        min-width: 40px !important;
+
+        height: 40px !important;
+
+        flex: 0 0 40px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        border-radius: 50% !important;
+
+        background:
+            rgba(0, 0, 0, 0.48) !important;
+    }
+
+    .reel-card .reel-overlay .reel-action-icon {
+        font-size: 17px !important;
+        line-height: 1 !important;
+    }
+
+    .reel-card .reel-overlay .reel-action
+    > span:last-child {
+        font-size: 8px !important;
+        line-height: 1 !important;
+    }
+
+}
+/* =========================================================
+   MOBILE REEL ACTIONS — FINAL POSITION
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .reel-card .reel-video > .reel-overlay > .reel-actions {
+        position: absolute !important;
+
+        /* LOWER RIGHT */
+        top: auto !important;
+        bottom: 70px !important;
+
+        right: 10px !important;
+        left: auto !important;
+
+        /* REMOVE CENTERING */
+        transform: none !important;
+
+        width: 44px !important;
+        height: auto !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        gap: 8px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: transparent !important;
+    }
+
+
+    .reel-card .reel-video > .reel-overlay > .reel-actions > .reel-action {
+        width: 40px !important;
+        min-width: 40px !important;
+        height: 40px !important;
+
+        flex: 0 0 40px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        border-radius: 50% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL MOBILE REEL ACTION POSITION
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .reel-card .reel-video {
+        position: relative;
+    }
+
+    .reel-card .reel-overlay {
+        position: absolute;
+        inset: 0;
+    }
+
+    .reel-card .reel-actions {
+        position: absolute;
+
+        top: auto !important;
+        bottom: 18px !important;
+
+        left: auto !important;
+        right: 10px !important;
+
+        transform: none !important;
+
+        width: 44px !important;
+        height: auto !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        gap: 9px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        z-index: 50 !important;
+    }
+
+    .reel-card .reel-action {
+        width: 41px !important;
+        height: 41px !important;
+
+        min-width: 41px !important;
+        min-height: 41px !important;
+
+        flex: 0 0 41px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL MOBILE FULLSCREEN REEL ACTIONS
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .reel-viewer {
+        width: 100vw;
+        height: 100vh;
+
+        overflow: hidden;
+    }
+
+    .reel-viewer-content {
+        position: relative;
+
+        width: 100vw !important;
+        height: 100vh !important;
+
+        max-width: none !important;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .reel-viewer-video-wrap {
+        position: relative;
+
+        width: 100vw !important;
+        height: 100vh !important;
+
+        max-width: 430px;
+
+        margin: 0 auto;
+
+        border-radius: 0 !important;
+    }
+
+    .reel-viewer-actions {
+        position: fixed !important;
+
+        top: 50% !important;
+        right: 10px !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        transform: translateY(-50%) !important;
+
+        width: 50px !important;
+        height: auto !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+
+        gap: 12px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        z-index: 999999 !important;
+    }
+
+    .reel-viewer-action {
+        width: 46px !important;
+        height: 46px !important;
+
+        min-width: 46px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .reel-viewer-action-icon {
+        width: 44px !important;
+        height: 44px !important;
+
+        display: grid !important;
+        place-items: center !important;
+
+        border-radius: 50% !important;
+
+        background:
+            rgba(0, 0, 0, 0.55) !important;
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+}
+
+/* =========================================================
+   NEXA DESKTOP — PREMIUM CENTERED SEARCH
+   ========================================================= */
+
+@media (min-width: 651px) {
+
+    .topbar {
+        position: sticky;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr
+            minmax(380px, 560px)
+            1fr;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+
+    /* -----------------------------------------------------
+       CENTER SEARCH
+       ----------------------------------------------------- */
+
+    .topbar-search {
+        grid-column: 2;
+
+        justify-self: center;
+
+        width: min(560px, 100%);
+
+        position: relative;
+    }
+
+
+    .topbar-search input {
+        width: 100%;
+
+        height: 46px;
+
+        padding:
+            0 20px
+            0 48px;
+
+        border:
+            1px solid
+            rgba(89, 100, 233, 0.13);
+
+        border-radius: 999px;
+
+        outline: none;
+
+        background:
+            rgba(255, 255, 255, 0.88);
+
+        color:
+            var(--text);
+
+        font-size: 12px;
+        font-weight: 550;
+
+        box-shadow:
+            0 8px 28px
+            rgba(35, 44, 76, 0.06);
+
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease,
+            background .2s ease;
+    }
+
+
+    .topbar-search input::placeholder {
+        color:
+            #9aa3b3;
+    }
+
+
+    .topbar-search input:focus {
+        background:
+            #ffffff;
+
+        border-color:
+            rgba(89, 100, 233, 0.28);
+
+        box-shadow:
+            0 0 0 4px
+            rgba(89, 100, 233, 0.06),
+            0 10px 30px
+            rgba(35, 44, 76, 0.08);
+    }
+
+
+    /* -----------------------------------------------------
+       SEARCH ICON
+       ----------------------------------------------------- */
+
+    .search-icon {
+        left: 18px;
+
+        color:
+            #8993a6;
+
+        font-size: 19px;
+
+        z-index: 2;
+    }
+
+
+    /* -----------------------------------------------------
+       REMOVE "/" SHORTCUT
+       ----------------------------------------------------- */
+
+    .search-shortcut {
+        display: none !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP TOPBAR — LOGO AND SEARCH FULLY SEPARATED
+   ========================================================= */
+
+@media (min-width: 651px) {
+
+    .topbar {
+        display: flex !important;
+        align-items: center !important;
+
+        gap: 30px !important;
+
+        min-height: 66px;
+
+        padding: 10px 24px !important;
+
+        background: black !important;
+
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+
+        border-bottom:
+            1px solid var(--line);
+
+        box-shadow: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       NEXA LOGO
+       ----------------------------------------------------- */
+
+    .mobile-logo {
+        display: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       SEARCH — CENTER/MAIN AREA
+       ----------------------------------------------------- */
+
+    .topbar-search {
+        position: relative !important;
+
+        flex: 1 1 auto !important;
+
+        width: auto !important;
+
+        max-width: 560px !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        order: 1;
+    }
+
+
+    .topbar-search input {
+        width: 100% !important;
+
+        height: 46px !important;
+
+        padding:
+            0 20px 0 48px !important;
+
+        border-radius: 999px !important;
+
+        background: #fff !important;
+
+        border:
+            1px solid
+            rgba(89, 100, 233, 0.13) !important;
+
+        box-shadow:
+            0 4px 18px
+            rgba(35, 44, 76, 0.06) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       TOP ACTIONS
+       ----------------------------------------------------- */
+
+    .topbar-actions {
+        flex: 0 0 auto !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        gap: 7px !important;
+
+        order: 2;
+    }
+
+
+    /* -----------------------------------------------------
+       IMPORTANT:
+       THE LOGO IS THE SIDEBAR BRAND.
+       IT MUST NOT SIT INSIDE THE SEARCH AREA.
+       ----------------------------------------------------- */
+
+    .sidebar-brand {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+/* =========================================================
+   MOBILE — HIDE HOME HERO
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .home-intro {
+        display: none !important;
+    }
+
+}
+
+/* =========================================================
+   FULLSCREEN REEL — CENTER TAP AREA
+   ========================================================= */
+
+.reel-viewer-video-wrap {
+    position: relative;
+}
+
+.reel-center-toggle {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(
+        -50%,
+        -50%
+    );
+
+    width: 45%;
+    height: 55%;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    z-index: 15;
+
+    padding: 0;
+}
+
+.reel-center-toggle:focus {
+    outline: none;
+}
+
+@media (max-width: 650px) {
+
+    .reel-center-toggle {
+        width: 60%;
+        height: 55%;
+    }
+}
+
+
+
+/* =========================================================
+   NEXA — DARK COMMENT BOXES
+   ========================================================= */
+
+/* Normal post comments */
+
+.comments-modal-box {
+    background: #0b1020 !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+.comments-modal-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.comments-modal-header h2,
+.comments-modal-header .section-eyebrow {
+    color: #ffffff !important;
+}
+
+.comments-modal-header button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.comments-list {
+    background: #0b1020 !important;
+}
+
+.comment-item {
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.comment-item strong {
+    color: #ffffff !important;
+}
+
+.comment-item p {
+    color: rgba(255, 255, 255, 0.70) !important;
+}
+
+.comment-form {
+    background: #080c18 !important;
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.comment-form input {
+    background: #151b2d !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
+}
+
+.comment-form input::placeholder {
+    color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.comment-form button {
+    background: linear-gradient(
+        135deg,
+        #5964e9,
+        #33b8e8
+    ) !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   STORY COMMENT PANEL
+   ========================================================= */
+
+.story-comment-panel-box {
+    background: #0b1020 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.story-comment-panel-header {
+    color: #ffffff !important;
+}
+
+.story-comment-panel-header button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+.story-existing-comments {
+    background: #0b1020 !important;
+}
+
+.story-existing-comment {
+    color: #ffffff !important;
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.story-existing-comment strong {
+    color: #ffffff !important;
+}
+
+.story-existing-comment span {
+    color: rgba(255, 255, 255, 0.70) !important;
+}
+
+.story-no-comments {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.story-comment-form {
+    background: #080c18 !important;
+}
+
+.story-comment-form input {
+    background: #151b2d !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
+}
+
+.story-comment-form input::placeholder {
+    color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.story-comment-form button {
+    background: linear-gradient(
+        135deg,
+        #5964e9,
+        #33b8e8
+    ) !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   NEXA — FINAL DARK POLISH + ANIMATION LAYER
+   Appended last on purpose so it always wins the cascade.
+   Nothing above this line was changed, reordered, or
+   removed — this section only finishes converting the
+   last light/white leftovers to the black+gold theme and
+   layers in some motion.
+========================================================= */
+
+/* ---------------------------------------------------------
+   REMAINING LIGHT/WHITE SURFACES -> DARK
+--------------------------------------------------------- */
+
+.quick-stat {
+    background:
+        linear-gradient(145deg, #14140f, #0a0a08) !important;
+    border-color: rgba(212,175,55,.14) !important;
+    color: #eee2c2 !important;
+}
+.quick-stat strong { color: #f3e6c4 !important; }
+.quick-stat small { color: rgba(238,226,194,.55) !important; }
+
+.home-intro {
+    background:
+        radial-gradient(circle at 85% 0%, rgba(212,175,55,.16), transparent 45%),
+        linear-gradient(120deg, #0d0c09 0%, #17140c 55%, #0a0908 100%) !important;
+    border-color: rgba(212,175,55,.18) !important;
+}
+.home-intro h1 { color: #f3e6c4 !important; }
+.home-intro h1 span {
+    background:
+        linear-gradient(90deg, #f5e6a8, #d4af37, #9b7420) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+.home-intro p { color: rgba(238,226,194,.60) !important; }
+
+.intro-action.secondary {
+    background: rgba(212,175,55,.07) !important;
+    border-color: rgba(212,175,55,.22) !important;
+    color: #eadfbd !important;
+}
+
+#postInput,
+.composer-action {
+    background: #101008 !important;
+    border-color: rgba(212,175,55,.14) !important;
+    color: #eee2c2 !important;
+}
+#postInput::placeholder { color: rgba(238,226,194,.38) !important; }
+.composer-action:hover {
+    background: rgba(212,175,55,.10) !important;
+    color: #f3e6c4 !important;
+}
+
+.feed-filter {
+    background: rgba(255,255,255,.03) !important;
+    border-color: rgba(212,175,55,.14) !important;
+}
+.feed-filter button { color: rgba(238,226,194,.52) !important; }
+.feed-filter .feed-filter-active {
+    background:
+        linear-gradient(135deg, #a27a16, #d4af37) !important;
+    color: #0a0906 !important;
+    box-shadow: 0 0 14px rgba(212,175,55,.30) !important;
+}
+
+.trend-item:hover { background: rgba(212,175,55,.06) !important; }
+.trend-item strong { color: #eee2c2 !important; }
+
+.connection-placeholder {
+    background: rgba(255,255,255,.03) !important;
+    border-color: rgba(212,175,55,.10) !important;
+}
+.connection-placeholder strong { color: #eee2c2 !important; }
+
+.post-menu:hover {
+    background: rgba(212,175,55,.08) !important;
+    color: #f3e6c4 !important;
+}
+
+.media-preview-content { background: #0a0a08 !important; }
+
+.comments-modal-header button,
+.media-preview-header button {
+    background: rgba(255,255,255,.06) !important;
+    color: #eee2c2 !important;
+    border-color: rgba(212,175,55,.14) !important;
+}
+.media-preview-header h2 { color: #f3e6c4 !important; }
+
+.topbar-search,
+.topbar-search input,
+.topbar-search input:focus {
+    background: rgba(255,255,255,.055) !important;
+    color: #f3e6c4 !important;
+    border-color: rgba(212,175,55,.20) !important;
+    box-shadow: none !important;
+}
+.topbar-search input::placeholder { color: rgba(238,226,194,.38) !important; }
+.search-icon { color: rgba(212,175,55,.68) !important; }
+
+.mini-avatar,
+.post-user-avatar {
+    border-color: rgba(212,175,55,.38) !important;
+}
+
+.story-ring img,
+.story-ring video,
+.story-avatar {
+    border-color: #0a0a08 !important;
+}
+
+.reel-viewer-progress span {
+    background:
+        linear-gradient(90deg, #d4af37, #f5e6a8) !important;
+}
+
+
+/* ---------------------------------------------------------
+   MOTION — a little life in the gold
+--------------------------------------------------------- */
+
+@keyframes nexaGoldDrift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.logo,
+.mobile-logo {
+    background-size: 200% auto !important;
+    animation: nexaGoldDrift 6s ease-in-out infinite;
+}
+
+@keyframes nexaCardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.stories-section,
+.create-post,
+.feed-post,
+.reel-card,
+.home-side-card,
+.nexa-side-banner,
+.quick-stat {
+    animation: nexaCardIn .45s cubic-bezier(.2,.7,.3,1) both;
+}
+
+@keyframes nexaGlowPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+    50%      { box-shadow: 0 0 26px 2px rgba(212,175,55,.18); }
+}
+
+.nexa-side-banner {
+    animation:
+        nexaCardIn .45s cubic-bezier(.2,.7,.3,1) both,
+        nexaGlowPulse 4.5s ease-in-out infinite;
+}
+
+.nav-item.active {
+    animation: nexaGlowPulse 3.4s ease-in-out infinite;
+}
+
+.composer-post-button,
+.intro-action.primary,
+.discover-button,
+.empty-feed-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.composer-post-button::after,
+.intro-action.primary::after,
+.discover-button::after,
+.empty-feed-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background:
+        linear-gradient(
+            115deg,
+            transparent,
+            rgba(255,255,255,.30),
+            transparent
+        );
+    transform: skewX(-20deg);
+    animation: nexaShine 3.2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes nexaShine {
+    0%   { left: -60%; }
+    45%  { left: 130%; }
+    100% { left: 130%; }
+}
+
+.story-ring {
+    background-size: 200% 200% !important;
+    animation: nexaGoldDrift 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo, .mobile-logo,
+    .stories-section, .create-post, .feed-post, .reel-card,
+    .home-side-card, .nexa-side-banner, .quick-stat,
+    .nav-item.active,
+    .composer-post-button::after, .intro-action.primary::after,
+    .discover-button::after, .empty-feed-button::after,
+    .story-ring {
+        animation: none !important;
+    }
+}
+
+/* =========================================================
+   NEXA PROFILE PICTURES — HOME
+========================================================= */
+
+.mini-avatar,
+.post-avatar,
+.story-avatar,
+.post-user-avatar,
+.reel-viewer-avatar {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background:
+        linear-gradient(
+            145deg,
+            #2a261d,
+            #0d0d0d
+        );
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    color: #d4af37;
+    font-weight: 700;
+}
+
+/* TOP MINI PROFILE */
+
+.mini-avatar {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+}
+
+/* CREATE POST */
+
+.post-avatar {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+}
+
+/* YOUR STORY */
+
+.story-avatar {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-width: 2px;
+}
+
+/* POST AUTHOR */
+
+.post-user-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+}
+
+/* REEL VIEWER */
+
+.reel-viewer-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+}
+
+/* REAL IMAGE */
+
+.mini-avatar img,
+.post-avatar img,
+.story-avatar img,
+.post-user-avatar img,
+.reel-viewer-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+/* REMOVE IMAGE INLINE WEIRDNESS */
+
+.mini-avatar img,
+.post-avatar img,
+.story-avatar img,
+.post-user-avatar img,
+.reel-viewer-avatar img {
+    vertical-align: middle;
+}
+
+/* POST AVATAR SPACING */
+
+.post-author .post-user-avatar {
+    overflow: hidden;
+}
+
+/* STORY AVATAR */
+
+.story-avatar-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* STORY ADD BUTTON STAYS ABOVE PHOTO */
+
+.story-avatar-wrapper .add-story {
+    z-index: 3;
+}
+
+/* CLEAN STORY PHOTO */
+
+.story-avatar img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+}
+
+/* MINI PROFILE IMAGE */
+
+.mini-avatar img {
+    position: absolute;
+    inset: 0;
+}
+
+/* CREATE POST IMAGE */
+
+.post-avatar img {
+    position: absolute;
+    inset: 0;
+}
+
+/* REGULAR POST IMAGE */
+
+.post-user-avatar img {
+    position: absolute;
+    inset: 0;
+}
+
+/* REEL AVATAR IMAGE */
+
+.reel-viewer-avatar img {
+    position: absolute;
+    inset: 0;
+}
+
+/* KEEP AVATARS PERFECTLY ROUND ON SMALL SCREENS */
+
+@media (max-width: 700px) {
+
+    .mini-avatar {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .post-avatar {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+
+    .story-avatar {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+    }
+
+    .post-user-avatar {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+
+    .reel-viewer-avatar {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+}
+.feed-normal-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    border-radius: inherit;
+}
+/* =========================================================
+   NORMAL VIDEO — RIGHT SIDE ACTIONS
+========================================================= */
+
+.feed-post:has(.feed-normal-video) {
+    position: relative;
+    overflow: hidden;
+}
+.feed-post:has(.feed-normal-video) {
+    position: relative;
+}
+
+.feed-post:has(.feed-normal-video) .post-actions-side {
+    position: absolute !important;
+
+    top: 50% !important;
+    right: 18px !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    transform: translateY(-50%) !important;
+
+    width: 55px !important;
+    height: auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 16px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+
+    z-index: 100 !important;
+
+    pointer-events: auto !important;
+}
+
+.feed-post:has(.feed-normal-video) .post-actions-side button {
+    position: relative !important;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: none !important;
+    border-radius: 50% !important;
+
+    background: rgba(0, 0, 0, 0.32) !important;
+
+    color: #ffffff !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    cursor: pointer !important;
+
+    pointer-events: auto !important;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+.feed-post:has(.feed-normal-video) .post-actions-side button:hover {
+    background: rgba(0, 0, 0, 0.48) !important;
+    transform: scale(1.08);
+}
+
+.feed-post:has(.feed-normal-video)
+.post-actions-side
+.post-action-icon {
+    font-size: 23px !important;
+    line-height: 1 !important;
+    color: #ffffff !important;
+
+    text-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.feed-post:has(.feed-normal-video)
+.post-actions-side
+button[data-action="like"].active
+.post-action-icon {
+    color: #ff1744 !important;
+
+    text-shadow:
+        0 0 8px rgba(255, 23, 68, 0.75),
+        0 0 16px rgba(255, 23, 68, 0.45);
+}
+
+.feed-post:has(.feed-normal-video)
+.post-actions-side
+button span:last-child {
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+}
+
+
+.feed-post:has(.feed-normal-video) .post-actions-side button:hover {
+    background: rgba(0, 0, 0, 0.35) !important;
+    transform: scale(1.1);
+}
+
+.feed-post:has(.feed-normal-video) .post-actions-side .post-action-icon {
+    font-size: 24px !important;
+    line-height: 1 !important;
+}
+
+.feed-post:has(.feed-normal-video) .post-actions-side button span:last-child {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: white !important;
+}
+
+.feed-post:has(.feed-normal-video)
+.post-actions-side
+button[data-action="like"].liked
+.post-action-icon {
+    color: #ff1744 !important;
+
+    text-shadow:
+        0 0 6px rgba(255, 23, 68, 0.9),
+        0 0 14px rgba(255, 23, 68, 0.7),
+        0 0 24px rgba(255, 23, 68, 0.45);
+}
+/* =========================================================
+   REEL TOP BAR — BLACK
+========================================================= */
+
+.reel-card .post-header,
+.reel-card .post-top,
+.reel-card .post-author-row,
+.reel-card .post-user {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+.reel-card .post-header::before,
+.reel-card .post-header::after,
+.reel-card .post-top::before,
+.reel-card .post-top::after {
+    background: #000000 !important;
+}
+
+.reel-card .post-header,
+.reel-card .post-top {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+.reel-card {
+    background: #000000 !important;
+}
+
+.reel-card > * {
+    background-color: transparent;
+}
+
+.reel-card .post-header {
+    background-color: #000000 !important;
+}
+/* =========================================================
+   FORCE REEL TOP BAR BLACK
+========================================================= */
+
+.reel-card,
+.reel-card * {
+    --reel-bg: #000000;
+}
+
+.reel-card .post-header,
+.reel-card .post-header > *,
+.reel-card .post-header div,
+.reel-card .post-header span,
+.reel-card .post-header button {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+.reel-card .post-header {
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.reel-card .post-header::before,
+.reel-card .post-header::after {
+    content: none !important;
+    display: none !important;
+}
+.reel-card {
+    background: #000000 !important;
+}
+
+.reel-card > div:first-child {
+    background: #000000 !important;
+}
+
+.reel-card > div:first-child::before,
+.reel-card > div:first-child::after {
+    background: #000000 !important;
+    content: none !important;
+}
