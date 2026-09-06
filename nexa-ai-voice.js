@@ -1,12 +1,13 @@
 /* =========================================================
-   NEXA AI VOICE — FIRST VERSION
-   Microphone + Speech Recognition + Voice Response
+   NEXA AI VOICE
+   Continuous conversation
+   Gemini AI
+   Gemini Natural TTS
 ========================================================= */
 
 (function () {
 
     "use strict";
-
 
     let recognition = null;
 
@@ -14,93 +15,627 @@
 
     let voiceEnabled = false;
 
+    let waitingForVoiceChoice = false;
+
+    let selectedVoiceGender =
+        localStorage.getItem(
+            "nexa_voice_gender"
+        ) || "female";
+
+    let currentAudio = null;
+
+    let conversationRequestRunning =
+        false;
+
 
     /* =====================================================
-       SPEECH SYNTHESIS
+       VOICE SELECTOR
     ===================================================== */
 
-    function speak(text) {
+    function showVoiceSelector() {
 
-        if (!voiceEnabled || !text) {
-            return;
+        const existing =
+            document.getElementById(
+                "nexaVoiceSelector"
+            );
+
+        if (existing) {
+            existing.remove();
         }
 
-        if (!("speechSynthesis" in window)) {
-            return;
-        }
+        const selector =
+            document.createElement("div");
 
-        window.speechSynthesis.cancel();
+        selector.id =
+            "nexaVoiceSelector";
 
-        const speech =
-            new SpeechSynthesisUtterance(text);
+        selector.innerHTML = `
+            <div class="nexa-voice-selector-box">
 
-        speech.rate = 1;
-        speech.pitch = 1;
-        speech.volume = 1;
+                <div class="nexa-voice-selector-title">
+                    NEXA VOICE
+                </div>
 
-        window.speechSynthesis.speak(
-            speech
-        );
+                <div class="nexa-voice-selector-subtitle">
+                    Choose your NEXA voice
+                </div>
+
+                <button
+                    type="button"
+                    class="nexa-voice-gender"
+                    data-gender="female"
+                >
+                    <span class="nexa-voice-gender-icon">
+                        ♀
+                    </span>
+
+                    <span>
+                        <strong>Female</strong>
+                        <small>Warm & friendly</small>
+                    </span>
+                </button>
+
+                <button
+                    type="button"
+                    class="nexa-voice-gender"
+                    data-gender="male"
+                >
+                    <span class="nexa-voice-gender-icon">
+                        ♂
+                    </span>
+
+                    <span>
+                        <strong>Male</strong>
+                        <small>Warm & confident</small>
+                    </span>
+                </button>
+
+            </div>
+        `;
+
+        document.body.appendChild(selector);
+
+        waitingForVoiceChoice = true;
+
+        const buttons =
+            selector.querySelectorAll(
+                ".nexa-voice-gender"
+            );
+
+        buttons.forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.gender ===
+                    selectedVoiceGender
+            );
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectedVoiceGender =
+                        button.dataset.gender;
+
+                    localStorage.setItem(
+                        "nexa_voice_gender",
+                        selectedVoiceGender
+                    );
+
+                    waitingForVoiceChoice = false;
+
+                    buttons.forEach(item => {
+                        item.classList.toggle(
+                            "active",
+                            item.dataset.gender ===
+                                selectedVoiceGender
+                        );
+                    });
+
+                    selector.remove();
+
+                    ensureRecognition();
+
+                    startListening();
+                }
+            );
+        });
     }
 
 
     /* =====================================================
-       NEXA RESPONSE
+       PCM 16-BIT → WAV
     ===================================================== */
 
-    function generateResponse(text) {
+    function pcm16ToWav(
+        pcmBytes,
+        sampleRate = 24000
+    ) {
+
+        const channels = 1;
+
+        const bitsPerSample = 16;
+
+        const dataSize =
+            pcmBytes.length;
+
+        const buffer =
+            new ArrayBuffer(
+                44 + dataSize
+            );
+
+        const view =
+            new DataView(buffer);
+
+        function writeString(
+            offset,
+            value
+        ) {
+
+            for (
+                let i = 0;
+                i < value.length;
+                i++
+            ) {
+
+                view.setUint8(
+                    offset + i,
+                    value.charCodeAt(i)
+                );
+            }
+        }
+
+        writeString(0, "RIFF");
+
+        view.setUint32(
+            4,
+            36 + dataSize,
+            true
+        );
+
+        writeString(8, "WAVE");
+
+        writeString(12, "fmt ");
+
+        view.setUint32(
+            16,
+            16,
+            true
+        );
+
+        view.setUint16(
+            20,
+            1,
+            true
+        );
+
+        view.setUint16(
+            22,
+            channels,
+            true
+        );
+
+        view.setUint32(
+            24,
+            sampleRate,
+            true
+        );
+
+        view.setUint32(
+            28,
+            sampleRate *
+                channels *
+                bitsPerSample /
+                8,
+            true
+        );
+
+        view.setUint16(
+            32,
+            channels *
+                bitsPerSample /
+                8,
+            true
+        );
+
+        view.setUint16(
+            34,
+            bitsPerSample,
+            true
+        );
+
+        writeString(36, "data");
+
+        view.setUint32(
+            40,
+            dataSize,
+            true
+        );
+
+        new Uint8Array(
+            buffer,
+            44
+        ).set(
+            pcmBytes
+        );
+
+        return buffer;
+    }
+
+
+    /* =====================================================
+       STOP CURRENT AUDIO
+    ===================================================== */
+
+    function stopCurrentAudio() {
+
+        if (!currentAudio) {
+            return;
+        }
+
+        try {
+            currentAudio.pause();
+        } catch (_) {}
+
+        try {
+            if (currentAudio.src) {
+                URL.revokeObjectURL(
+                    currentAudio.src
+                );
+            }
+        } catch (_) {}
+
+        currentAudio = null;
+    }
+
+
+    /* =====================================================
+       START LISTENING
+    ===================================================== */
+
+    function startListening() {
+
+        if (
+            !voiceEnabled ||
+            waitingForVoiceChoice ||
+            !recognition ||
+            isListening ||
+            conversationRequestRunning
+        ) {
+            return;
+        }
+
+        setTimeout(() => {
+
+            if (
+                !voiceEnabled ||
+                waitingForVoiceChoice ||
+                !recognition ||
+                isListening ||
+                conversationRequestRunning
+            ) {
+                return;
+            }
+
+            try {
+
+                recognition.start();
+
+            } catch (error) {
+
+                console.warn(
+                    "NEXA recognition start:",
+                    error
+                );
+            }
+
+        }, 500);
+    }
+
+
+    /* =====================================================
+       SPEAK GEMINI AUDIO
+    ===================================================== */
+
+    async function speak(
+        text,
+        audioBase64,
+        audioMimeType
+    ) {
+
+        if (!voiceEnabled) {
+            return;
+        }
+
+        if (
+            recognition &&
+            isListening
+        ) {
+
+            try {
+                recognition.stop();
+            } catch (_) {}
+        }
+
+        stopCurrentAudio();
+
+        if (!audioBase64) {
+
+            console.error(
+                "NEXA did not receive generated audio."
+            );
+
+            startListening();
+
+            return;
+        }
+
+        try {
+
+            const mimeType =
+                String(
+                    audioMimeType ||
+                    "audio/L16;rate=24000"
+                );
+
+            const binaryString =
+                atob(audioBase64);
+
+            const pcmBytes =
+                new Uint8Array(
+                    binaryString.length
+                );
+
+            for (
+                let i = 0;
+                i < binaryString.length;
+                i++
+            ) {
+
+                pcmBytes[i] =
+                    binaryString.charCodeAt(i);
+            }
+
+            let audioBlob;
+
+            /*
+             * Gemini TTS returns raw PCM.
+             */
+
+            if (
+                mimeType
+                    .toLowerCase()
+                    .includes("audio/l16") ||
+                mimeType
+                    .toLowerCase()
+                    .includes("audio/pcm")
+            ) {
+
+                const rateMatch =
+                    mimeType.match(
+                        /rate=(\d+)/i
+                    );
+
+                const sampleRate =
+                    rateMatch
+                        ? Number(
+                            rateMatch[1]
+                        )
+                        : 24000;
+
+                const wavBuffer =
+                    pcm16ToWav(
+                        pcmBytes,
+                        sampleRate
+                    );
+
+                audioBlob =
+                    new Blob(
+                        [wavBuffer],
+                        {
+                            type:
+                                "audio/wav"
+                        }
+                    );
+
+            } else {
+
+                audioBlob =
+                    new Blob(
+                        [pcmBytes],
+                        {
+                            type:
+                                mimeType
+                        }
+                    );
+            }
+
+            const url =
+                URL.createObjectURL(
+                    audioBlob
+                );
+
+            const audio =
+                new Audio(url);
+
+            currentAudio =
+                audio;
+
+            audio.volume = 1;
+
+            audio.onended = () => {
+
+                URL.revokeObjectURL(url);
+
+                if (
+                    currentAudio === audio
+                ) {
+                    currentAudio = null;
+                }
+
+                startListening();
+            };
+
+            audio.onerror = error => {
+
+                console.error(
+                    "NEXA audio playback error:",
+                    error
+                );
+
+                URL.revokeObjectURL(url);
+
+                if (
+                    currentAudio === audio
+                ) {
+                    currentAudio = null;
+                }
+
+                startListening();
+            };
+
+            await audio.play();
+
+        } catch (error) {
+
+            console.error(
+                "NEXA generated voice error:",
+                error
+            );
+
+            startListening();
+        }
+    }
+
+
+    /* =====================================================
+       GENERATE RESPONSE
+    ===================================================== */
+
+    async function generateResponse(
+        text
+    ) {
 
         const message =
-            text.trim().toLowerCase();
+            String(
+                text || ""
+            ).trim();
 
         if (!message) {
-            return "I didn't hear anything.";
-        }
 
+            return {
+                reply:
+                    "I didn't hear anything.",
+                audio:
+                    null,
+                audioMimeType:
+                    null
+            };
+        }
 
         if (
-            message.includes("hello") ||
-            message.includes("hi")
+            typeof nexaSupabase ===
+            "undefined"
         ) {
-            return "Hey! I'm NEXA. It's good to hear from you.";
+
+            return {
+                reply:
+                    "I'm having trouble connecting to NEXA.",
+                audio:
+                    null,
+                audioMimeType:
+                    null
+            };
         }
 
+        try {
 
-        if (
-            message.includes("how are you")
-        ) {
-            return "I'm doing great. I'm right here with you.";
+            const {
+                data,
+                error
+            } =
+                await nexaSupabase
+                    .functions
+                    .invoke(
+                        "nexa-ai",
+                        {
+                            body: {
+                                message,
+                                voiceGender:
+                                    selectedVoiceGender
+                            }
+                        }
+                    );
+
+            if (error) {
+
+                console.error(
+                    "NEXA AI function error:",
+                    error
+                );
+
+                return {
+                    reply:
+                        "I'm having trouble thinking right now.",
+                    audio:
+                        null,
+                    audioMimeType:
+                        null
+                };
+            }
+
+            if (data?.error) {
+
+                console.error(
+                    "NEXA AI returned error:",
+                    data.error
+                );
+
+                return {
+                    reply:
+                        "I couldn't process that right now.",
+                    audio:
+                        null,
+                    audioMimeType:
+                        null
+                };
+            }
+
+            return {
+                reply:
+                    data?.reply ||
+                    "I don't have an answer yet.",
+
+                audio:
+                    data?.audio ||
+                    null,
+
+                audioMimeType:
+                    data?.audioMimeType ||
+                    null
+            };
+
+        } catch (error) {
+
+            console.error(
+                "NEXA AI connection error:",
+                error
+            );
+
+            return {
+                reply:
+                    "NEXA couldn't connect to the AI service.",
+                audio:
+                    null,
+                audioMimeType:
+                    null
+            };
         }
-
-
-        if (
-            message.includes("who are you")
-        ) {
-            return "I'm NEXA, your personal voice assistant.";
-        }
-
-
-        if (
-            message.includes("thank you") ||
-            message.includes("thanks")
-        ) {
-            return "You're welcome.";
-        }
-
-
-        if (
-            message.includes("bye")
-        ) {
-            return "See you later.";
-        }
-
-
-        return `You said ${text}. I'm listening.`;
     }
 
 
     /* =====================================================
-       MICROPHONE
+       CREATE SPEECH RECOGNITION
     ===================================================== */
 
     function createRecognition() {
@@ -109,20 +644,17 @@
             window.SpeechRecognition ||
             window.webkitSpeechRecognition;
 
-
         if (!SpeechRecognition) {
 
             console.warn(
-                "NEXA Voice: Speech Recognition is not supported."
+                "NEXA Voice is not supported in this browser."
             );
 
             return null;
         }
 
-
         const instance =
             new SpeechRecognition();
-
 
         instance.continuous = false;
 
@@ -135,9 +667,7 @@
 
             isListening = true;
 
-            updateVoiceUI(
-                true
-            );
+            updateVoiceUI(true);
         };
 
 
@@ -145,60 +675,110 @@
 
             isListening = false;
 
-            updateVoiceUI(
-                false
-            );
+            updateVoiceUI(false);
+
+            if (
+                voiceEnabled &&
+                !conversationRequestRunning
+            ) {
+                startListening();
+            }
         };
 
 
         instance.onerror = event => {
 
-            console.error(
-                "NEXA Voice error:",
+            console.warn(
+                "NEXA speech error:",
                 event.error
             );
 
             isListening = false;
 
-            updateVoiceUI(
-                false
-            );
+            updateVoiceUI(false);
+
+            if (
+                voiceEnabled &&
+                event.error !==
+                    "not-allowed"
+            ) {
+                startListening();
+            }
         };
 
 
-        instance.onresult = event => {
+        instance.onresult = async event => {
 
             const transcript =
                 event
-                    .results[0][0]
-                    .transcript;
+                    ?.results?.[0]?.[0]
+                    ?.transcript
+                    ?.trim();
 
+            if (!transcript) {
+
+                startListening();
+
+                return;
+            }
 
             console.log(
                 "NEXA heard:",
                 transcript
             );
 
+            if (
+                conversationRequestRunning
+            ) {
+                return;
+            }
 
-            const response =
-                generateResponse(
-                    transcript
+            conversationRequestRunning =
+                true;
+
+            try {
+
+                const response =
+                    await generateResponse(
+                        transcript
+                    );
+
+                console.log(
+                    "NEXA response:",
+                    response.reply
                 );
 
+                await speak(
+                    response.reply,
+                    response.audio,
+                    response.audioMimeType
+                );
 
-            console.log(
-                "NEXA response:",
-                response
-            );
+            } finally {
 
-
-            speak(
-                response
-            );
+                conversationRequestRunning =
+                    false;
+            }
         };
 
 
         return instance;
+    }
+
+
+    /* =====================================================
+       ENSURE RECOGNITION
+    ===================================================== */
+
+    function ensureRecognition() {
+
+        if (!recognition) {
+
+            recognition =
+                createRecognition();
+        }
+
+        return recognition;
     }
 
 
@@ -215,22 +795,18 @@
                 ".nexa-voice-toggle"
             );
 
+        buttons.forEach(button => {
 
-        buttons.forEach(
-            button => {
+            button.classList.toggle(
+                "active",
+                voiceEnabled
+            );
 
-                button.classList.toggle(
-                    "active",
-                    voiceEnabled
-                );
-
-                button.classList.toggle(
-                    "listening",
-                    listening
-                );
-
-            }
-        );
+            button.classList.toggle(
+                "listening",
+                listening
+            );
+        });
     }
 
 
@@ -240,126 +816,82 @@
 
     function toggleVoice() {
 
-        voiceEnabled =
-            !voiceEnabled;
+        /*
+         * TURN OFF
+         */
 
+        if (voiceEnabled) {
 
-        if (!voiceEnabled) {
+            voiceEnabled =
+                false;
+
+            waitingForVoiceChoice =
+                false;
+
+            conversationRequestRunning =
+                false;
 
             if (recognition) {
 
                 try {
                     recognition.stop();
                 } catch (_) {}
-
             }
 
-            window.speechSynthesis?.cancel();
+            stopCurrentAudio();
 
-            updateVoiceUI(
-                false
-            );
+            updateVoiceUI(false);
 
             return;
         }
 
 
-        if (!recognition) {
+        /*
+         * TURN ON
+         */
 
-            recognition =
-                createRecognition();
-        }
+        voiceEnabled =
+            true;
 
+        updateVoiceUI(false);
 
-        if (!recognition) {
-
-            voiceEnabled =
-                false;
-
-            alert(
-                "NEXA Voice is not supported in this browser."
-            );
-
-            return;
-        }
-
-
-        updateVoiceUI(
-            false
-        );
-
-
-        try {
-
-            recognition.start();
-
-        } catch (error) {
-
-            console.error(
-                "NEXA Voice start error:",
-                error
-            );
-
-        }
+        showVoiceSelector();
     }
 
 
     /* =====================================================
-       CONNECT NEXA LOGO
+       LOGO CONNECTION
     ===================================================== */
 
     function setupVoiceButtons() {
 
         const selectors = [
-
             ".nexa-logo",
-
             ".logo",
-
             ".mobile-logo"
-
         ];
-
 
         const buttons =
             document.querySelectorAll(
                 selectors.join(",")
             );
 
+        buttons.forEach(button => {
 
-        buttons.forEach(
-            button => {
+            button.classList.add(
+                "nexa-voice-toggle"
+            );
 
-                button.classList.add(
-                    "nexa-voice-toggle"
-                );
+            button.addEventListener(
+                "click",
+                event => {
 
+                    event.preventDefault();
 
-                button.addEventListener(
-                    "click",
-                    event => {
-
-                        /*
-                         * Normal navigation should
-                         * continue when Voice is off.
-                         *
-                         * For now, hold SHIFT while
-                         * clicking NEXA to activate Voice.
-                         */
-
-                        if (
-                            event.shiftKey
-                        ) {
-
-                            event.preventDefault();
-
-                            toggleVoice();
-                        }
-
-                    }
-                );
-            }
-        );
+                    toggleVoice();
+                }
+            );
+        });
     }
 
 
@@ -374,7 +906,6 @@
             if (!voiceEnabled) {
                 toggleVoice();
             }
-
         },
 
         disable() {
@@ -382,7 +913,6 @@
             if (voiceEnabled) {
                 toggleVoice();
             }
-
         },
 
         toggle:
@@ -395,13 +925,18 @@
 
             return voiceEnabled;
         }
-
     };
 
 
     /* =====================================================
-       START
+       INITIALIZE
     ===================================================== */
+
+    function initialize() {
+
+        setupVoiceButtons();
+    }
+
 
     if (
         document.readyState ===
@@ -410,13 +945,12 @@
 
         document.addEventListener(
             "DOMContentLoaded",
-            setupVoiceButtons
+            initialize
         );
 
     } else {
 
-        setupVoiceButtons();
+        initialize();
     }
-
 
 })();
